@@ -15,7 +15,7 @@ export class HomeComponent {
     this.savedWords = [];
 
     service.getWords().subscribe(data => {
-      this.savedWords = Object.keys(data).map(key => data[key].word.trim().toLowerCase());
+      this.savedWords = [...data].map(a => a.word.trim().toLowerCase());
       console.log(this.savedWords);
     });
     ;
