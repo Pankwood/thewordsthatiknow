@@ -10,18 +10,24 @@ export class HomeComponent {
 
   typedWords: any;
   savedWords: string[];
-  //isChecked: boolean = true;
 
-  constructor(service: WordsService) {
-    this.savedWords = service.getWords();
+  constructor(private service: WordsService) {
+    this.savedWords = [];
+
+    service.getWords().subscribe(data => {
+      this.savedWords = Object.keys(data).map(key => data[key].word.trim().toLowerCase());
+      console.log(this.savedWords);
+    });
+    ;
   }
 
   submit(form: any) {
     this.typedWords = form.value.text.split(' ');
+    console.log(this.typedWords);
   }
 
   isChecked(item: string) {
-    return this.savedWords.includes(item.trim().toUpperCase());
+    return this.savedWords.includes(item.trim().toLowerCase());
   }
 
 }
