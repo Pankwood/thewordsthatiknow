@@ -1,0 +1,48 @@
+<div class="main">
+    <section class="BannerMainContainer">
+        <section class="ContentAreaContainer">
+            <div class="Item">
+                <h2 class="Title">How many words do you think you know?</h2>
+                <p class="Description">Let's figure this out right now!</p>
+            </div>
+            <div class="Item">
+                <div class="VideoContainer"><iframe
+                        src="https://www.youtube.com/embed/iMaqzAkgUIs?autoplay=0&amp;mute=1" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen=""
+                        srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/iMaqzAkgUIs?autoplay=1&amp;mute=1><img loading=lazy src=https://img.youtube.com/vi/iMaqzAkgUIs/hqdefault.jpg alt=&quot;How many words do you think you know?&quot;><span>&amp;#x25BA;</span></a>"
+                        title="How many words do you think you know?" class="ResponsiveIframe"></iframe></div>
+                <button class="WatchButton">Assista</button>
+            </div>
+        </section>
+    </section>
+
+    <div>
+        <div>
+            <h3>First Step</h3>
+            <p>Paste your text here and click on Check it.</p>
+            <form ngForm #form="ngForm" (ngSubmit)="submit(form)">
+                <div>
+                    <textarea #text="ngModel" ngModel name="text" id="text"
+                        placeholder="Paste your text here"></textarea>
+                    <button class="button">Check it</button>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="typedWords">
+            <h3>Second Step</h3>
+            <p>Click on the words you know and save it. Next time, these words will show up already checked.</p>
+            <form onSubmit={handlePostSubmit} key="formPost">
+                <ul class="ks-cboxtags">
+                    <li *ngFor="let item of typedWords; let i = index;">
+                        <input type="checkbox" id="{{item+i}}" name="ckbWord" value="{{item}}"
+                            [checked]="isChecked(item)" />
+                        <label for="{{item+i}}"> {{item}} </label>
+                    </li>
+                </ul>
+                <button class="button">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
