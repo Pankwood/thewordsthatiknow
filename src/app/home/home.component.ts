@@ -15,10 +15,9 @@ export class HomeComponent {
     this.savedWords = [];
 
     service.getWords().subscribe(data => {
-      this.savedWords = [...data].map(a => a.word.trim().toLowerCase());
+      this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
       console.log(this.savedWords);
-    });
-    ;
+    }, error => console.log("Erro!!"));
   }
 
   submit(form: any) {

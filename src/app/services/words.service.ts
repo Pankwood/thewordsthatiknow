@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +7,9 @@ import { HttpClient } from '@angular/common/http'
 export class WordsService {
 
   constructor(private http: HttpClient) { }
+
   getWords() {
-    let url = "https://localhost:44312/Words";
-    return this.http.get<any>(url)
-    //return ["TEST", "OTHERTEST", "WORD"]
+    let url = "http://localhost:1987/word";
+    return this.http.get<any>(url);
   }
 }
