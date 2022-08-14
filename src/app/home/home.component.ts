@@ -11,11 +11,13 @@ export class HomeComponent {
   savedWords: string[];
   typedWords: string[];
   checkedWords: string[];
+  languages: object;
 
   constructor(private service: WordsService) {
     this.savedWords = [];
     this.typedWords = [];
     this.checkedWords = [];
+    this.languages = { "en": 'English', "fr": 'French', "pt": 'Portuguese' };
 
     service.getWords().subscribe(data => {
       this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());

@@ -20,9 +20,16 @@
     <div>
         <div>
             <h3>First Step</h3>
-            <p>Paste your text here and click on Check it.</p>
+            <p>Choose the target language, paste your text and click on Check it.</p>
             <form ngForm #form="ngForm" (ngSubmit)="submit(form)">
                 <div>
+                    <label for="languages">Language:</label>
+                    <div>
+                        <select name="languages" id="languages">
+                            <option *ngFor="let item of languages | keyvalue" [value]="item.key">{{item.value}}
+                            </option>
+                        </select>
+                    </div>
                     <textarea #text="ngModel" ngModel name="text" id="text"
                         placeholder="Paste your text here"></textarea>
                     <button class="button">Check it</button>
