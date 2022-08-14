@@ -1,3 +1,4 @@
+import { LanguagesService } from './../services/languages.service';
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../services/words.service';
 
@@ -11,18 +12,23 @@ export class HomeComponent {
   savedWords: string[];
   typedWords: string[];
   checkedWords: string[];
-  languages: object;
+  languages: any;
 
-  constructor(private service: WordsService) {
+  constructor(private serviceWord: WordsService, serviceLanguage: LanguagesService) {
     this.savedWords = [];
     this.typedWords = [];
     this.checkedWords = [];
-    this.languages = { "en": 'English', "fr": 'French', "pt": 'Portuguese' };
+    this.languages = [];
 
-    service.getWords().subscribe(data => {
+    serviceWord.getWords().subscribe(data => {
       this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
       console.log(this.savedWords);
-    }, error => console.log("Erro!!"));
+    }, error => console.log("Error to get words"));
+
+    serviceLanguage.getLanguages().subscribe(data => {
+      this.languages = data;
+      console.log(this.languages);
+    }, error => console.log("Error to get languages"));
   }
 
   submit(form: any) {
@@ -32,7 +38,7 @@ export class HomeComponent {
 
   saveWords() {
     this.checkedWords.forEach(word => {
-      this.service.saveWord(word).subscribe();
+      this.serviceWord.saveWord(word).subscribe();
     });
   }
 
