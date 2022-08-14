@@ -10,10 +10,12 @@ export class HomeComponent {
 
   savedWords: string[];
   typedWords: string[];
+  checkedWords: string[];
 
   constructor(private service: WordsService) {
     this.savedWords = [];
     this.typedWords = [];
+    this.checkedWords = [];
 
     service.getWords().subscribe(data => {
       this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
@@ -27,13 +29,18 @@ export class HomeComponent {
   }
 
   saveWords() {
-    this.typedWords.forEach(word => {
-      this.service.saveWords(word).subscribe();
+    this.checkedWords.forEach(word => {
+      this.service.saveWord(word).subscribe();
     });
   }
 
   isChecked(item: string) {
     return this.savedWords.includes(item.trim().toLowerCase());
+  }
+
+  onSelect(event: any) {
+    if (event.target.checked)
+      this.checkedWords.push(event.target.value);
   }
 
 }

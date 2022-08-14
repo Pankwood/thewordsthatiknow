@@ -37,7 +37,7 @@
                 <ul class="ks-cboxtags">
                     <li *ngFor="let item of typedWords; let i = index;">
                         <input type="checkbox" id="{{item+i}}" name="ckbWord" value="{{item}}"
-                            [checked]="isChecked(item)" />
+                            [checked]="isChecked(item)" (change)='onSelect($event)' />
                         <label for="{{item+i}}"> {{item}} </label>
                     </li>
                 </ul>
