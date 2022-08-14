@@ -33,7 +33,7 @@
         <div *ngIf="typedWords">
             <h3>Second Step</h3>
             <p>Click on the words you know and save it. Next time, these words will show up already checked.</p>
-            <form onSubmit={handlePostSubmit} key="formPost">
+            <form (ngSubmit)="saveWords()" key="formPost">
                 <ul class="ks-cboxtags">
                     <li *ngFor="let item of typedWords; let i = index;">
                         <input type="checkbox" id="{{item+i}}" name="ckbWord" value="{{item}}"

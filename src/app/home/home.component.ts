@@ -8,11 +8,12 @@ import { WordsService } from '../services/words.service';
 })
 export class HomeComponent {
 
-  typedWords: any;
   savedWords: string[];
+  typedWords: string[];
 
   constructor(private service: WordsService) {
     this.savedWords = [];
+    this.typedWords = [];
 
     service.getWords().subscribe(data => {
       this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
@@ -23,6 +24,12 @@ export class HomeComponent {
   submit(form: any) {
     this.typedWords = form.value.text.split(' ');
     console.log(this.typedWords);
+  }
+
+  saveWords() {
+    this.typedWords.forEach(word => {
+      this.service.saveWords(word).subscribe();
+    });
   }
 
   isChecked(item: string) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,22 @@ export class WordsService {
 
   constructor(private http: HttpClient) { }
 
+  url = "http://localhost:1987/word";
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
+
   getWords() {
-    let url = "http://localhost:1987/word";
-    return this.http.get<any>(url);
+    return this.http.get<any>(this.url);
   }
+
+  saveWords(word: any) {
+
+    let wordObject = { 'wordName': word.toString() };
+    return this.http.post<any>(this.url, wordObject, this.httpOptions);
+  }
+
+
 }
