@@ -23,10 +23,11 @@
             <p>Choose the target language, paste your text and click on Check it.</p>
             <form ngForm #form="ngForm" (ngSubmit)="submit(form)">
                 <div>
-                    <label for="languages">Language:</label>
+                    <label for="cmblanguages">Language:</label>
                     <div>
-                        <select name="languages" id="languages">
-                            <option *ngFor="let language of languages" [value]="language.id">{{language.language}}
+                        <select #cmblanguages="ngModel" ngModel="en" name="cmblanguages" id="cmblanguages">
+                            <option *ngFor="let language of languages ; let i = index" [value]="language.id"
+                                [selected]="language.id=='en'">{{language.language}}
                             </option>
                         </select>
                     </div>

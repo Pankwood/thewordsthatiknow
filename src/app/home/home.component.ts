@@ -13,12 +13,14 @@ export class HomeComponent {
   typedWords: string[];
   checkedWords: string[];
   languages: any;
+  selectedLanguage: string;
 
   constructor(private serviceWord: WordsService, serviceLanguage: LanguagesService) {
     this.savedWords = [];
     this.typedWords = [];
     this.checkedWords = [];
     this.languages = [];
+    this.selectedLanguage = "en";
 
     serviceWord.getWords().subscribe(data => {
       this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
@@ -33,12 +35,14 @@ export class HomeComponent {
 
   submit(form: any) {
     this.typedWords = form.value.text.split(' ');
+    this.selectedLanguage = form.value.cmblanguages ?? "en";
     console.log(this.typedWords);
   }
 
   saveWords() {
     this.checkedWords.forEach(word => {
-      this.serviceWord.saveWord(word).subscribe();
+      console.log(this.selectedLanguage);
+      this.serviceWord.saveWord({ languageId: this.selectedLanguage, wordName: word }).subscribe();
     });
   }
 

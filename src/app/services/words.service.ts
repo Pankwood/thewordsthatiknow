@@ -20,7 +20,7 @@ export class WordsService {
   }
 
   saveWord(word: any) {
-    let wordObject = { 'wordName': word };
+    let wordObject = word;
     return this.http.post<any>(this.url, wordObject, this.httpOptions);
   }
 
