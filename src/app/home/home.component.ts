@@ -41,9 +41,11 @@ export class HomeComponent {
 
   saveWords() {
     this.checkedWords.forEach(word => {
+      let userId = localStorage.getItem("userId") ?? 0;
       console.log(this.selectedLanguage);
-      this.serviceWord.saveWord({ languageId: this.selectedLanguage, wordName: word }).subscribe();
+      this.serviceWord.saveWord({ languageId: this.selectedLanguage, userId: userId, wordName: word }).subscribe();
     });
+    this.checkedWords = [];
   }
 
   isChecked(item: string) {
