@@ -8,7 +8,7 @@ export class LanguagesService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://localhost:1987/language";
+  url = "https://thewordsthatiknowapi.vercel.app/language";
 
   getLanguages() {
     return this.http.get<any>(this.url);

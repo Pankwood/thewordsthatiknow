@@ -8,7 +8,7 @@ export class WordsService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://localhost:1987/word";
+  url = "https://thewordsthatiknowapi.vercel.app/word";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
