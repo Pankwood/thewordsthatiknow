@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class WordsService {
 
   constructor(private http: HttpClient) { }
 
-  url = "https://thewordsthatiknowapi.vercel.app/word";
+  url = environment.API_URL + "word";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
