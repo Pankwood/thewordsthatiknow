@@ -1,6 +1,7 @@
 import { LanguagesService } from './../services/languages.service';
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../services/words.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -15,36 +16,58 @@ export class HomeComponent {
   languages: any;
   selectedLanguage: string;
 
-  constructor(private serviceWord: WordsService, serviceLanguage: LanguagesService) {
+  constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
     this.savedWords = [];
     this.typedWords = [];
     this.checkedWords = [];
     this.languages = [];
     this.selectedLanguage = "en";
 
-    serviceWord.getWords().subscribe(data => {
+    this.serviceWord.getWords().subscribe(data => {
       this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
-      console.log(this.savedWords);
-    }, error => console.log("Error to get words"));
+      console.log("Words from db", this.savedWords);
+    }, error => console.dir("Error to get words", error));
 
-    serviceLanguage.getLanguages().subscribe(data => {
+    this.serviceLanguage.getLanguages().subscribe(data => {
       this.languages = data;
-      console.log(this.languages);
-    }, error => console.log("Error to get languages"));
+      if (data.length <= 0)
+        this.serviceNotification.showError("Error to load languages. Try again later.", "Error");
+
+      console.log("Languages", this.languages);
+    }, error => {
+      this.serviceNotification.showError("Error to load languages. Try again later.", "Error");
+      console.dir("Error to load languages.", error);
+    });
   }
 
   submit(form: any) {
-    this.typedWords = form.value.text.split(' ');
-    this.selectedLanguage = form.value.cmblanguages ?? "en";
-    console.log(this.typedWords);
+    try {
+      this.typedWords = form.value.text.split(' ');
+      this.selectedLanguage = form.value.cmblanguages ?? "en";
+      console.log("Words Splitted", this.typedWords);
+    } catch (error) {
+      this.serviceNotification.showError("Error to show words. Try again later.", "Error");
+      console.dir("Error to show words.", error);
+    }
   }
 
   saveWords() {
+    if (this.checkedWords.length <= 0) {
+      this.serviceNotification.showWarning("Choose the words you know before save it.", "Warning");
+      return;
+    }
+
     this.checkedWords.forEach(word => {
       let userId = localStorage.getItem("userId") ?? 0;
-      console.log(this.selectedLanguage);
-      this.serviceWord.saveWord({ languageId: this.selectedLanguage, userId: userId, wordName: word }).subscribe();
+      console.log("Chosen Language", this.selectedLanguage);
+      this.serviceWord.saveWord({ languageId: this.selectedLanguage, userId: userId, wordName: word }).subscribe(() => {
+      }, error => {
+        this.serviceNotification.showError("Error to save words. Try again later.", "Error");
+      }
+      );
     });
+    this.serviceNotification.showSuccess("Word(s) saved.", "Success");
+    console.log("Saved Words", this.checkedWords);
     this.checkedWords = [];
   }
 
