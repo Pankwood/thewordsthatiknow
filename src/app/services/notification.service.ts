@@ -14,7 +14,6 @@ export class NotificationService {
     countDuplicates: true,
     maxOpened: 3,
     autoDismiss: true,
-    messageClass: 'toastColor',
   };
 
   showSuccess(message: string, title: string) {

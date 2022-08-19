@@ -25,7 +25,7 @@ export class HomeComponent {
 
     this.serviceWord.getWords().subscribe(data => {
       this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
-      console.log("Words from db", this.savedWords);
+      console.debug("Words from db", this.savedWords);
     }, error => console.dir("Error to get words", error));
 
     this.serviceLanguage.getLanguages().subscribe(data => {
@@ -33,7 +33,7 @@ export class HomeComponent {
       if (data.length <= 0)
         this.serviceNotification.showError("Error to load languages. Try again later.", "Error");
 
-      console.log("Languages", this.languages);
+      console.debug("Languages", this.languages);
     }, error => {
       this.serviceNotification.showError("Error to load languages. Try again later.", "Error");
       console.dir("Error to load languages.", error);
@@ -44,7 +44,7 @@ export class HomeComponent {
     try {
       this.typedWords = form.value.text.split(' ');
       this.selectedLanguage = form.value.cmblanguages ?? "en";
-      console.log("Words Splitted", this.typedWords);
+      console.debug("Words Splitted", this.typedWords);
     } catch (error) {
       this.serviceNotification.showError("Error to show words. Try again later.", "Error");
       console.dir("Error to show words.", error);
@@ -59,7 +59,7 @@ export class HomeComponent {
 
     this.checkedWords.forEach(word => {
       let userId = localStorage.getItem("userId") ?? 0;
-      console.log("Chosen Language", this.selectedLanguage);
+      console.debug("Chosen Language", this.selectedLanguage);
       this.serviceWord.saveWord({ languageId: this.selectedLanguage, userId: userId, wordName: word }).subscribe(() => {
       }, error => {
         this.serviceNotification.showError("Error to save words. Try again later.", "Error");
@@ -67,7 +67,7 @@ export class HomeComponent {
       );
     });
     this.serviceNotification.showSuccess("Word(s) saved.", "Success");
-    console.log("Saved Words", this.checkedWords);
+    console.debug("Saved Words", this.checkedWords);
     this.checkedWords = [];
   }
 
