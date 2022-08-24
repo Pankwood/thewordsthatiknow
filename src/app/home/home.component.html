@@ -38,7 +38,7 @@
             </form>
         </div>
 
-        <div *ngIf="typedWords">
+        <div *ngIf="typedWords.length > 0">
             <h3>Second Step</h3>
             <p>Click on the words you know and save it. Next time, these words will show up already checked.</p>
             <form (ngSubmit)="saveWords()" key="formPost">
