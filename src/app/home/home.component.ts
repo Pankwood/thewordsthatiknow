@@ -18,11 +18,12 @@ export class HomeComponent {
   selectedLanguage: string;
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
+    this.languages = [];
+    this.selectedLanguage = "en";
+
     this.wordsFromDB = [];
     this.typedWords = [];
     this.checkedWords = [];
-    this.languages = [];
-    this.selectedLanguage = "en";
 
     this.serviceLanguage.getLanguages().subscribe(data => {
       this.languages = data;
@@ -36,21 +37,23 @@ export class HomeComponent {
     });
   }
 
-  changeCmbLanguages() {
-    this.clearForm();
-  }
-
   clearForm() {
     this.wordsFromDB = [];
     this.typedWords = [];
     this.checkedWords = [];
   }
 
+  removeExtraSpace(text: String) {
+    return text.replace(/\s+/g, " ").trim();
+  }
 
-  submit(form: any) {
+  changeCmbLanguages() {
+    this.clearForm();
+  }
+
+  checkWords(form: any) {
     try {
-      //remove extra spacing between words
-      let text = form.value.text.replace(/\s+/g, " ").trim();
+      let text = this.removeExtraSpace(form.value.text)
       this.selectedLanguage = form.value.cmblanguages ?? "en";
       this.clearForm();
       if (text != "") {
@@ -83,7 +86,6 @@ export class HomeComponent {
     }
 
     this.checkedWords.forEach(word => {
-
       this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
         let isWordDuplicated = data != null;
         if (isWordDuplicated)
@@ -99,19 +101,16 @@ export class HomeComponent {
           console.debug("Error to save words. Try again later.", error);
         }, () => {
           this.checkedWords = [];
-        }
-
-        );
+        });
       });
     });
-
   }
 
-  isChecked(item: string) {
+  isDefaultChecked(item: string) {
     return this.wordsFromDB.includes(item.trim().toLowerCase())
   }
 
-  onSelect(event: any) {
+  wordChkSelect(event: any) {
     if (event.target.checked && !this.checkedWords.includes(event.target.value)) {
       this.checkedWords.push(event.target.value);
       console.debug("Word Included", this.checkedWords);
@@ -120,9 +119,7 @@ export class HomeComponent {
       if (index !== -1) {
         this.checkedWords.splice(index, 1);
       }
-
       console.debug("Word Included", this.checkedWords);
     }
   }
-
 }

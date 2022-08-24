@@ -21,11 +21,12 @@
         <div>
             <h3>First Step</h3>
             <p>Choose the target language, paste your text and click on Check it.</p>
-            <form ngForm #form="ngForm" (ngSubmit)="submit(form)">
+            <form ngForm #form="ngForm" (ngSubmit)="checkWords(form)">
                 <div>
                     <label for="cmblanguages">Language:</label>
                     <div>
-                        <select #cmblanguages="ngModel" ngModel="en" name="cmblanguages" id="cmblanguages" (change)="changeCmbLanguages()">
+                        <select #cmblanguages="ngModel" ngModel="en" name="cmblanguages" id="cmblanguages"
+                            (change)="changeCmbLanguages()">
                             <option *ngFor="let language of languages ; let i = index" [value]="language.id"
                                 [selected]="language.id=='en'">{{language.language}}
                             </option>
@@ -45,7 +46,7 @@
                 <ul class="ks-cboxtags">
                     <li *ngFor="let item of typedWords; let i = index;">
                         <input type="checkbox" id="{{item+i}}" name="ckbWord" value="{{item}}"
-                            [checked]="isChecked(item)" (change)='onSelect($event)' />
+                            [checked]="isDefaultChecked(item)" (change)='wordChkSelect($event)' />
                         <label for="{{item+i}}"> {{item}} </label>
                     </li>
                 </ul>
