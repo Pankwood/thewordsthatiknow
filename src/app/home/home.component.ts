@@ -60,6 +60,9 @@ export class HomeComponent {
           this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
             if (data != null)
               this.wordsFromDB.push(data.wordName).toString();
+          }, error => {
+            this.serviceNotification.showError("Error to compare word from DB. Try again later.", "Error");
+            console.debug(error);
           })
         })
         console.debug("Words Splitted", this.typedWords);
@@ -89,16 +92,19 @@ export class HomeComponent {
         let userId = localStorage.getItem("userId") ?? 0;
         console.debug("Chosen Language", this.selectedLanguage);
         this.serviceWord.saveWord({ languageId: this.selectedLanguage, userId: userId, wordName: word }).subscribe(() => {
+          this.serviceNotification.showSuccess("Word(s) saved.", "Success");
+          console.debug("Saved Words", this.checkedWords);
         }, error => {
           this.serviceNotification.showError("Error to save words. Try again later.", "Error");
           console.debug("Error to save words. Try again later.", error);
+        }, () => {
+          this.checkedWords = [];
         }
+
         );
       });
     });
-    this.serviceNotification.showSuccess("Word(s) saved.", "Success");
-    console.debug("Saved Words", this.checkedWords);
-    this.checkedWords = [];
+
   }
 
   isChecked(item: string) {
