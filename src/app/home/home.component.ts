@@ -42,10 +42,17 @@ export class HomeComponent {
 
   submit(form: any) {
     try {
-      this.typedWords = form.value.text.split(' ');
-      this.typedWords = [...new Set(this.typedWords)];
-      this.selectedLanguage = form.value.cmblanguages ?? "en";
-      console.debug("Words Splitted", this.typedWords);
+      //remove extra spacing between words
+      let text = form.value.text.replace(/\s+/g, " ").trim();
+      if (text != "") {
+        this.typedWords = text.split(' ');
+        this.typedWords = [...new Set(this.typedWords)];
+        this.selectedLanguage = form.value.cmblanguages ?? "en";
+        console.debug("Words Splitted", this.typedWords);
+      }
+      else {
+        this.serviceNotification.showInfo("Type any word before check it in.", "Info");
+      }
     } catch (error) {
       this.serviceNotification.showError("Error to show words. Try again later.", "Error");
       console.dir("Error to show words.", error);
