@@ -11,14 +11,14 @@ import { NotificationService } from '../services/notification.service';
 })
 export class HomeComponent {
 
-  savedWords: string[];
+  wordsFromDB: string[];
   typedWords: string[];
   checkedWords: string[];
   languages: any;
   selectedLanguage: string;
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
-    this.savedWords = [];
+    this.wordsFromDB = [];
     this.typedWords = [];
     this.checkedWords = [];
     this.languages = [];
@@ -41,7 +41,7 @@ export class HomeComponent {
   }
 
   clearForm() {
-    this.savedWords = [];
+    this.wordsFromDB = [];
     this.typedWords = [];
     this.checkedWords = [];
   }
@@ -59,7 +59,7 @@ export class HomeComponent {
         this.typedWords.forEach(word => {
           this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
             if (data != null)
-              this.savedWords.push(data.wordName).toString();
+              this.wordsFromDB.push(data.wordName).toString();
           })
         })
         console.debug("Words Splitted", this.typedWords);
@@ -102,7 +102,7 @@ export class HomeComponent {
   }
 
   isChecked(item: string) {
-    return this.savedWords.includes(item.trim().toLowerCase())
+    return this.wordsFromDB.includes(item.trim().toLowerCase())
   }
 
   onSelect(event: any) {
