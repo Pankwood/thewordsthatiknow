@@ -12,7 +12,7 @@ export class NotificationService {
     positionClass: 'toast-bottom-right',
     preventDuplicates: true,
     countDuplicates: true,
-    maxOpened: 3,
+    maxOpened: 4,
     autoDismiss: true,
   };
 
