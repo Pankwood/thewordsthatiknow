@@ -1,7 +1,8 @@
 import { LanguagesService } from './../services/languages.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { WordsService } from '../services/words.service';
 import { NotificationService } from '../services/notification.service';
+
 
 @Component({
   selector: 'app-home',
@@ -23,11 +24,6 @@ export class HomeComponent {
     this.languages = [];
     this.selectedLanguage = "en";
 
-    this.serviceWord.getWords().subscribe(data => {
-      this.savedWords = [...data].map(a => a.wordName.trim().toLowerCase());
-      console.debug("Words from db", this.savedWords);
-    }, error => console.dir("Error to get words", error));
-
     this.serviceLanguage.getLanguages().subscribe(data => {
       this.languages = data;
       if (data.length <= 0)
@@ -40,14 +36,32 @@ export class HomeComponent {
     });
   }
 
+  changeCmbLanguages() {
+    this.clearForm();
+  }
+
+  clearForm() {
+    this.savedWords = [];
+    this.typedWords = [];
+    this.checkedWords = [];
+  }
+
+
   submit(form: any) {
     try {
       //remove extra spacing between words
       let text = form.value.text.replace(/\s+/g, " ").trim();
+      this.selectedLanguage = form.value.cmblanguages ?? "en";
+      this.clearForm();
       if (text != "") {
         this.typedWords = text.split(' ');
         this.typedWords = [...new Set(this.typedWords)];
-        this.selectedLanguage = form.value.cmblanguages ?? "en";
+        this.typedWords.forEach(word => {
+          this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
+            if (data != null)
+              this.savedWords.push(data.wordName).toString();
+          })
+        })
         console.debug("Words Splitted", this.typedWords);
       }
       else {
@@ -88,7 +102,7 @@ export class HomeComponent {
   }
 
   isChecked(item: string) {
-    return this.savedWords.includes(item.trim().toLowerCase());
+    return this.savedWords.includes(item.trim().toLowerCase())
   }
 
   onSelect(event: any) {
