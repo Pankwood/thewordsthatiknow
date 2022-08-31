@@ -80,6 +80,7 @@ export class HomeComponent {
   }
 
   saveWords() {
+    console.debug("See words", this.checkedWords);
     if (this.checkedWords.length <= 0) {
       this.serviceNotification.showWarning("Choose the words you know before save it.", "Warning");
       return;
@@ -111,7 +112,7 @@ export class HomeComponent {
   }
 
   wordChkSelect(event: any) {
-    if (event.target.checked && !this.checkedWords.includes(event.target.value)) {
+    if (event.target.checked && !this.checkedWords.includes(event.target.value) && !this.wordsFromDB.includes(event.target.value)) {
       this.checkedWords.push(event.target.value);
       console.debug("Word Included", this.checkedWords);
     } else if (!event.target.checked) {

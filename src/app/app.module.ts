@@ -26,7 +26,15 @@ import { WordsService } from './services/words.service';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      countDuplicates: true,
+      maxOpened: 1,
+      autoDismiss: true,
+      resetTimeoutOnDuplicate: true,
+      includeTitleDuplicates: true
+    }),
   ],
   providers: [
     WordsService,
