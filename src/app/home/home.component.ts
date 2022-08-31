@@ -47,7 +47,8 @@ export class HomeComponent {
     return text.replace(/\s+/g, " ").trim();
   }
 
-  changeCmbLanguages() {
+  changeCmbLanguages(event: any) {
+    console.debug("Language selected", event.target.value);
     this.clearForm();
   }
 
@@ -80,7 +81,6 @@ export class HomeComponent {
   }
 
   saveWords() {
-    console.debug("See words", this.checkedWords);
     if (this.checkedWords.length <= 0) {
       this.serviceNotification.showWarning("Choose the words you know before save it.", "Warning");
       return;

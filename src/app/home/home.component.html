@@ -26,7 +26,7 @@
                     <label for="cmblanguages">Language:</label>
                     <div>
                         <select #cmblanguages="ngModel" ngModel="en" name="cmblanguages" id="cmblanguages"
-                            (change)="changeCmbLanguages()">
+                            (change)="changeCmbLanguages($event)">
                             <option *ngFor="let language of languages ; let i = index" [value]="language.id"
                                 [selected]="language.id=='en'">{{language.language}}
                             </option>
