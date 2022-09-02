@@ -7,9 +7,9 @@ import { environment } from 'src/environments/environment';
 })
 export class LanguagesService {
 
-  constructor(private http: HttpClient) { }
-
   url = environment.API_URL + "language";
+
+  constructor(private http: HttpClient) { }
 
   getLanguages() {
     return this.http.get<any>(this.url);

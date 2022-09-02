@@ -11,20 +11,13 @@ import { NotificationService } from '../services/notification.service';
 })
 export class HomeComponent {
 
-  wordsFromDB: string[];
-  typedWords: string[];
-  checkedWords: string[];
-  languages: any;
-  selectedLanguage: string;
+  wordsFromDB: string[] = [];
+  typedWords: string[] = [];
+  checkedWords: string[] = [];
+  languages: any = [];
+  selectedLanguage: string = "en";
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
-    this.languages = [];
-    this.selectedLanguage = "en";
-
-    this.wordsFromDB = [];
-    this.typedWords = [];
-    this.checkedWords = [];
-
     //The data will fill the cmbLanguage field.
     this.serviceLanguage.getLanguages().subscribe(data => {
       this.languages = data;

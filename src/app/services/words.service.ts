@@ -7,14 +7,15 @@ import { environment } from 'src/environments/environment';
 })
 export class WordsService {
 
-  constructor(private http: HttpClient) { }
-
   url = environment.API_URL + "word";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
   };
+
+  constructor(private http: HttpClient) { }
 
   getWords() {
     return this.http.get<any>(this.url);
