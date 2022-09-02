@@ -21,7 +21,7 @@
         <div>
             <h3>First Step</h3>
             <p>Choose the target language, paste your text and click on Check it.</p>
-            <form ngForm #form="ngForm" (ngSubmit)="checkWords(form)">
+            <form ngForm #form="ngForm" (ngSubmit)="btncheckWordsClick(form)">
                 <div>
                     <label for="cmblanguages">Language:</label>
                     <div>
@@ -34,7 +34,7 @@
                     </div>
                     <textarea #text="ngModel" ngModel name="text" id="text"
                         placeholder="Paste your text here"></textarea>
-                    <button class="button">Check it</button>
+                    <button id="btncheckWords" class="button">Check it</button>
                 </div>
             </form>
         </div>
