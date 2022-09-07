@@ -12,6 +12,7 @@ export class WordsService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(environment.API_LOGIN + ':' + environment.API_PASSWORD),
     })
   };
 
