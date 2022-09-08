@@ -69,7 +69,7 @@ export class HomeComponent {
         console.debug("Words Splitted", this.typedWords);
       }
       else {
-        this.serviceNotification.showInfo("Type any word before check it in.", "Info");
+        this.serviceNotification.showWarning("Type any word before check it in.", "Warning");
       }
     } catch (error) {
       this.serviceNotification.showError("Error to show words. Try again later.", "Error");
