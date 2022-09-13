@@ -45,9 +45,9 @@
             <form (ngSubmit)="saveWords()" key="formPost">
                 <ul class="ks-cboxtags">
                     <li *ngFor="let item of typedWords; let i = index;">
-                        <input type="checkbox" id="{{item+i}}" name="ckbWord" value="{{item}}"
+                        <input type="checkbox" [id]="item+i" name="ckbWord" [value]="item"
                             [checked]="isDefaultChecked(item)" (change)='wordChkSelect($event)' />
-                        <label for="{{item+i}}"> {{item}} </label>
+                        <label [for]="item+i"> {{item}} </label>
                     </li>
                 </ul>
                 <button class="button">Save</button>
