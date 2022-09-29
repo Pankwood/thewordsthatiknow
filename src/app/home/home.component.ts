@@ -2,6 +2,7 @@ import { LanguagesService } from './../services/languages.service';
 import { Component } from '@angular/core';
 import { WordsService } from '../services/words.service';
 import { NotificationService } from '../services/notification.service';
+import { clearForms, removeExtraSpace } from '../../utils';
 
 
 @Component({
@@ -31,27 +32,17 @@ export class HomeComponent {
     });
   }
 
-  clearForm() {
-    this.wordsFromDB = [];
-    this.typedWords = [];
-    this.checkedWords = [];
-  }
-
-  removeExtraSpace(text: String) {
-    return text.replace(/\s+/g, " ").trim();
-  }
-
   changeCmbLanguages(event: any) {
     console.debug("Language selected", event.target.value);
-    this.clearForm();
+    clearForms([this.wordsFromDB, this.typedWords, this.checkedWords]);
   }
 
   btncheckWordsClick(form: any) {
     try {
-      let text = this.removeExtraSpace(form.value.text)
+      let text = removeExtraSpace(form.value.text);
       //Get language from combobox cmblanguages
       this.selectedLanguage = form.value.cmblanguages ?? "en";
-      this.clearForm();
+      clearForms([this.wordsFromDB, this.typedWords, this.checkedWords]);
       if (text != "") {
         //Split all word in an array
         this.typedWords = text.split(' ');

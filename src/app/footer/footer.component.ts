@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getCurrentYear } from 'src/utils';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  currentYear: number = new Date().getFullYear();
+  currentYear: number = getCurrentYear();
 
   constructor() { }
 
