@@ -15,11 +15,14 @@ declare const require: {
 };
 
 // First, initialize the Angular testing environment.
+// Change it to false to solve "An error was thrown in afterAll Error: Injector has already been destroyed." issue
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(),
-  { teardown: { destroyAfterEach: true }},
+  { teardown: { destroyAfterEach: false } },
 );
+
+
 
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);

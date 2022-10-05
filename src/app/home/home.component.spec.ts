@@ -7,6 +7,8 @@ import { HomeComponent } from './home.component';
 import { By } from '@angular/platform-browser';
 import { WordsService } from '../services/words.service';
 import { empty, from, Observable, of, throwError } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 describe('HomeComponent', () => {
@@ -18,7 +20,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
-      imports: [HttpClientModule, ToastrModule.forRoot(), FormsModule],
+      imports: [HttpClientModule, ToastrModule.forRoot(), FormsModule, BrowserAnimationsModule],
     })
       .compileComponents();
 
@@ -185,12 +187,13 @@ describe('HomeComponent', () => {
     expect(component.selectedLanguage).not.toEqual('');
   });
 
-  it('wordChkSelect - should subscribe saveWords', () => {
+  it('wordChkSelect - should event value not be empty', () => {
     let event = { target: { value: "myword" } };
 
     component.wordChkSelect(event);
 
     expect(event.target.value).not.toEqual('');
+    expect(event.target.value).not.toBeNull();
   });
 
 });
