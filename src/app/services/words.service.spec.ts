@@ -21,25 +21,27 @@ describe('WordsService', () => {
 
   it('should subscribe getWords', () => {
     let words = ['word1', 'word2', 'word3']
-
-    spyOn(service, 'getWords').and.callFake(() => {
+    let result = 0;
+    let spy = spyOn(service, 'getWords').and.callFake(() => {
       return from([words]);
     })
 
-    let result = 0;
     service.getWords().subscribe(data => { result = data.length });
+
+    expect(spy).toHaveBeenCalled();
     expect(result).toBe(3);
   });
 
   it('should subscribe getWordByWordAndLanguage', () => {
     let word = ['word1'];
-
-    spyOn(service, 'getWordByWordAndLanguage').and.callFake(() => {
+    let result = 0;
+    let spy = spyOn(service, 'getWordByWordAndLanguage').and.callFake(() => {
       return from([word]);
     })
 
-    let result = 0;
     service.getWordByWordAndLanguage("arg1", "arg2").subscribe(data => { result = data.length });
+
+    expect(spy).toHaveBeenCalled();
     expect(result).toBe(1);
   });
 
@@ -48,7 +50,8 @@ describe('WordsService', () => {
       return empty();
     })
 
-    service.saveWord("arg1").subscribe();
+    service.saveWord("word");
+
     expect(spy).toHaveBeenCalled();
   });
 

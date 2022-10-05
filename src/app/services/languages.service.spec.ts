@@ -21,13 +21,13 @@ describe('LanguagesService', () => {
 
   it('should subscribe getLanguages', () => {
     let languages = ['en', 'fr', 'pt'];
-
-    spyOn(service, 'getLanguages').and.callFake(() => {
+    let result = 0;
+    let spy = spyOn(service, 'getLanguages').and.callFake(() => {
       return from([languages]);
     })
 
-    let result = 0;
     service.getLanguages().subscribe(data => { result = data.length });
+    expect(spy).toHaveBeenCalled();
     expect(result).toBe(3);
   });
 

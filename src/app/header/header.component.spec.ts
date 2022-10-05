@@ -27,6 +27,7 @@ describe('HeaderComponent', () => {
     const logo = fixture.debugElement.query(
       By.css('.logo')
     );
+
     expect(logo.nativeElement.tagName).toBe('IMG');
     expect(logo.nativeElement.src).not.toBeNull();
     expect(logo.nativeElement.alt).not.toBeNull();

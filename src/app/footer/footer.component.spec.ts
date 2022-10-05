@@ -28,6 +28,7 @@ describe('FooterComponent', () => {
     const footer = fixture.debugElement.query(
       By.css('.footer')
     );
+
     expect(footer.nativeElement.textContent).toContain(currentYear);
   });
 });
