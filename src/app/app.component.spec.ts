@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -15,7 +17,8 @@ describe('AppComponent', () => {
         RouterTestingModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule
       ],
       declarations: [
         AppComponent,
