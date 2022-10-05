@@ -185,12 +185,13 @@ describe('HomeComponent', () => {
     expect(component.selectedLanguage).not.toEqual('');
   });
 
-  it('wordChkSelect - should subscribe saveWords', () => {
+  it('wordChkSelect - should event value not be empty', () => {
     let event = { target: { value: "myword" } };
 
     component.wordChkSelect(event);
 
     expect(event.target.value).not.toEqual('');
+    expect(event.target.value).not.toBeNull();
   });
 
 });
