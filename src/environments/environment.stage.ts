@@ -3,6 +3,6 @@ export const environment = {
   API_URL: "https://thewordsthatiknowapi-git-stage-pankwood.vercel.app/",
   API_LOGIN: "thewordthatiknow",
   API_PASSWORD: "thewordthatiknow200",
-  VERCEL_GIT_COMMIT_SHA: "0",
-  VERCEL_ENV: "dev",
+  VERCEL_GIT_COMMIT_SHA: "",
+  VERCEL_ENV: "",
 };
