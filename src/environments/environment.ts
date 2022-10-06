@@ -7,8 +7,8 @@ export const environment = {
   API_URL: "http://localhost:5000/",
   API_LOGIN: "thewordthatiknow",
   API_PASSWORD: "thewordthatiknow200",
-  REACT_APP_VERCEL_GIT_COMMIT_SHA: "",
-  REACT_APP_VERCEL_ENV: "",
+  ANGULAR_APP_VERCEL_GIT_COMMIT_SHA: "",
+  ANGULAR_APP_VERCEL_ENV: "",
 };
 
 /*
