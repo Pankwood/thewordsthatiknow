@@ -1,5 +1,5 @@
 import { LanguagesService } from './../services/languages.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../services/words.service';
 import { NotificationService } from '../services/notification.service';
 import { removeExtraSpace } from '../../utils';
@@ -10,7 +10,7 @@ import { removeExtraSpace } from '../../utils';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   wordsFromDB: string[] = [];
   typedWords: string[] = [];
@@ -20,13 +20,16 @@ export class HomeComponent {
   errorMessage: string = "";
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
+
+  }
+  ngOnInit(): void {
     //The data will fill the cmbLanguage field.
     this.serviceLanguage.getLanguages().subscribe(data => {
       this.languages = data;
       if (data.length <= 0)
         this.serviceNotification.showError("There is no language data to show. Contact the administrator.", "Error");
 
-      console.debug("Languages", this.languages);
+      //console.debug("Languages", this.languages);
     }, error => {
       this.serviceNotification.showError("Error to load languages. Try again later.", "Error");
       console.dir("Error to load languages.", error);
@@ -45,35 +48,29 @@ export class HomeComponent {
   }
 
   btncheckWordsClick(form: any) {
-    try {
-      //Get language from combobox cmblanguages
-      this.selectedLanguage = form.value.cmblanguages ?? "en";
-      this.clearForm();
-      //Split all word in an array
-      this.typedWords = removeExtraSpace(form.value.text).split(' ');
-      if (this.typedWords.length > 0 && this.typedWords[0] != '') {
-        //Remove duplicated words
-        this.typedWords = [...new Set(this.typedWords)];
-        this.typedWords.forEach(word => {
-          this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
-            if (data != null)
-              this.wordsFromDB.push(data.wordName).toString();
-          }, error => {
-            this.errorMessage = "Error to compare word from DB. Try again later.";
-            this.serviceNotification.showError(this.errorMessage, "Error");
-            console.debug(error);
-          })
+    //Get language from combobox cmblanguages
+    this.selectedLanguage = form.value.cmblanguages ?? "en";
+    this.clearForm();
+    //Split all word in an array
+    this.typedWords = removeExtraSpace(form.value.text).split(' ');
+    if (this.typedWords.length > 0 && this.typedWords[0] != '') {
+      //Remove duplicated words
+      this.typedWords = [...new Set(this.typedWords)];
+      this.typedWords.forEach(word => {
+        this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
+          if (data != null)
+            this.wordsFromDB.push(data.wordName).toString();
+        }, error => {
+          this.errorMessage = "Error to compare word from DB. Try again later.";
+          this.serviceNotification.showError(this.errorMessage, "Error");
+          console.debug(error);
         })
-        console.debug("Words Splitted", this.typedWords);
-      }
-      else {
-        this.errorMessage = "Type any word before check it in.";
-        this.serviceNotification.showWarning(this.errorMessage, "Warning");
-      }
-    } catch (error) {
-      this.errorMessage = "Error to show words. Try again later.";
-      this.serviceNotification.showError(this.errorMessage, "Error");
-      console.dir("Error to show words.", error);
+      })
+      console.debug("Words Splitted", this.typedWords);
+    }
+    else {
+      this.errorMessage = "Type any word before check it in.";
+      this.serviceNotification.showWarning(this.errorMessage, "Warning");
     }
   }
 

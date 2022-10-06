@@ -231,7 +231,7 @@ describe('HomeComponent', () => {
     component.checkedWords = [];
     component.checkedWords.push('word1');
     let event = { target: { value: "word1", checked: true } };
-    
+
     component.wordChkSelect(event);
 
     expect(component.checkedWords[0]).toEqual("word1");
