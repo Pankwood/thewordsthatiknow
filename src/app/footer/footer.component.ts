@@ -10,8 +10,8 @@ import { getCurrentYear } from 'src/utils';
 export class FooterComponent implements OnInit {
 
   currentYear: number = getCurrentYear();
-  gitVersion = environment.ANGULAR_VERCEL_GIT_COMMIT_SHA.substring(0, 6);
-  vercelEnv = environment.ANGULAR_VERCEL_ENV;
+  gitVersion = environment.REACT_APP_VERCEL_GIT_COMMIT_SHA.substring(0, 6);
+  vercelEnv = environment.REACT_APP_VERCEL_ENV;
 
   constructor() { }
 
