@@ -131,7 +131,6 @@ export class HomeComponent {
       if (index !== -1) {
         this.checkedWords.splice(index, 1);
       }
-      console.debug("Word Included", this.checkedWords);
     }
   }
 }
