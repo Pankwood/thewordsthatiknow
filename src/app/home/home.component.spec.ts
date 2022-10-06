@@ -196,4 +196,61 @@ describe('HomeComponent', () => {
     expect(event.target.value).not.toBeNull();
   });
 
+  it('wordChkSelect - should add word into checkedWords', () => {
+    component.checkedWords = [];
+    component.checkedWords.push('otherWord');
+    component.wordsFromDB.push('otherWord2');
+    let event = { target: { value: "word", checked: true } };
+
+    component.wordChkSelect(event);
+
+    expect(component.checkedWords[1]).toEqual('word');
+  });
+
+  it('wordChkSelect - should remove word into checkedWords', () => {
+    component.checkedWords = [];
+    component.checkedWords.push('word');
+    let event = { target: { value: "word", checked: false } };
+
+    component.wordChkSelect(event);
+
+    expect(component.checkedWords.indexOf('word')).toEqual(-1);
+  });
+
+  it('wordChkSelect - should checkedWords not changed', () => {
+    component.checkedWords = [];
+    component.checkedWords.push('word1');
+    let event = { target: { value: "word2", checked: false } };
+
+    component.wordChkSelect(event);
+
+    expect(component.checkedWords[0]).toEqual("word1");
+  });
+
+  it('wordChkSelect - should checkedWords not changed', () => {
+    component.checkedWords = [];
+    component.checkedWords.push('word1');
+    let event = { target: { value: "word1", checked: true } };
+
+    component.wordChkSelect(event);
+
+    expect(component.checkedWords[0]).toEqual("word1");
+  });
+
+  it('isTypedWords - should return true', () => {
+    component.typedWords.push('word1');
+
+    let result = component.isTypedWords();
+
+    expect(result).toBeTrue();
+  });
+
+  it('isTypedWords - should return false', () => {
+    component.typedWords = [];
+
+    let result = component.isTypedWords();
+
+    expect(result).toBeFalse();
+  });
+
 });
