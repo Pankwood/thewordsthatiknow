@@ -7,8 +7,8 @@ export const environment = {
   API_URL: "http://localhost:5000/",
   API_LOGIN: "thewordthatiknow",
   API_PASSWORD: "thewordthatiknow200",
-  VERCEL_GIT_COMMIT_SHA: "",
-  VERCEL_ENV: "",
+  ANGULAR_VERCEL_GIT_COMMIT_SHA: "",
+  ANGULAR_VERCEL_ENV: "",
 };
 
 /*
