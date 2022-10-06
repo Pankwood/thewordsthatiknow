@@ -237,4 +237,20 @@ describe('HomeComponent', () => {
     expect(component.checkedWords[0]).toEqual("word1");
   });
 
+  it('isTypedWords - should return true', () => {
+    component.typedWords.push('word1');
+
+    let result = component.isTypedWords();
+
+    expect(result).toBeTrue();
+  });
+
+  it('isTypedWords - should return false', () => {
+    component.typedWords = [];
+
+    let result = component.isTypedWords();
+
+    expect(result).toBeFalse();
+  });
+
 });

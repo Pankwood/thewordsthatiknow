@@ -47,13 +47,17 @@ export class HomeComponent implements OnInit {
     this.clearForm();
   }
 
+  isTypedWords(): boolean {
+    return this.typedWords.length > 0 && this.typedWords[0] != '';
+  }
+
   btncheckWordsClick(form: any) {
     //Get language from combobox cmblanguages
     this.selectedLanguage = form.value.cmblanguages ?? "en";
     this.clearForm();
     //Split all word in an array
     this.typedWords = removeExtraSpace(form.value.text).split(' ');
-    if (this.typedWords.length > 0 && this.typedWords[0] != '') {
+    if (this.isTypedWords()) {
       //Remove duplicated words
       this.typedWords = [...new Set(this.typedWords)];
       this.typedWords.forEach(word => {
