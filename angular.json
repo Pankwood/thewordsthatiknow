@@ -37,7 +37,7 @@
             "scripts": []
           },
           "configurations": {
-            "stage": {
+            "staging": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -80,8 +80,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "stage": {
-              "browserTarget": "thewordsthatiknow:build:stage"
+            "staging": {
+              "browserTarget": "thewordsthatiknow:build:staging"
             },
             "production": {
               "browserTarget": "thewordsthatiknow:build:production"
