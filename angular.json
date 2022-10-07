@@ -37,6 +37,14 @@
             "scripts": []
           },
           "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -65,29 +73,21 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
-            },
-            "stage": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.stage.ts"
-                }
-              ]
             }
           },
-          "defaultConfiguration": "stage"
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "stage": {
+              "browserTarget": "thewordsthatiknow:build:stage"
+            },
             "production": {
               "browserTarget": "thewordsthatiknow:build:production"
             },
             "development": {
               "browserTarget": "thewordsthatiknow:build:development"
-            },
-            "stage": {
-              "browserTarget": "thewordsthatiknow:build:stage"
             }
           },
           "defaultConfiguration": "development"
