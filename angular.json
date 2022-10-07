@@ -65,6 +65,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -77,6 +85,9 @@
             },
             "development": {
               "browserTarget": "thewordsthatiknow:build:development"
+            },
+            "stage": {
+              "browserTarget": "thewordsthatiknow:build:stage"
             }
           },
           "defaultConfiguration": "development"
