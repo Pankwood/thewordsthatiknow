@@ -7,6 +7,7 @@ export const environment = {
   API_URL: "http://localhost:5000/",
   API_LOGIN: "thewordthatiknow",
   API_PASSWORD: "thewordthatiknow200",
+  NAME: "Dev",
 };
 
 /*
