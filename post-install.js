@@ -9,7 +9,10 @@ if (process.env.ENV === 'production') {
     command = exec('ng build --aot --configuration=production');
 } else if (process.env.ENV === 'stage') {
     command = exec('ng build --aot --configuration=stage');
+} else if (process.env.ENV === 'preview') {
+    command = exec('ng build --aot --configuration=stage');
 }
+
 
 if (command != undefined) {
     command.stdout.on('data', (data) => {
