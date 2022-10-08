@@ -1,4 +1,4 @@
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { getCurrentYear } from 'src/utils';
 
