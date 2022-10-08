@@ -1,6 +1,10 @@
 const { exec } = require('child_process');
 
 let command;
+console.log("MyTEST", VERCEL_ENV);
+console.log("MyTEST2", ENV);
+console.log("MyTEST", process.env.VERCEL_ENV);
+console.log("MyTEST2", process.env.ENV);
 
 if (process.env.ENV === 'production') {
     command = exec('ng build --aot --configuration=production');
