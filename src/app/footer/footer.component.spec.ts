@@ -5,6 +5,7 @@ import { FooterComponent } from './footer.component';
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
+  let footer: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,6 +18,9 @@ describe('FooterComponent', () => {
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    footer = fixture.debugElement.query(
+      By.css('.footer')
+    );
   });
 
   it('should create', () => {
@@ -25,10 +29,13 @@ describe('FooterComponent', () => {
 
   it('should has the current year', () => {
     const currentYear = new Date().getFullYear();
-    const footer = fixture.debugElement.query(
-      By.css('.footer')
-    );
 
     expect(footer.nativeElement.textContent).toContain(currentYear);
+  });
+
+  it('should has the environment name', () => {
+    const environmentName = "Dev";
+
+    expect(footer.nativeElement.textContent).toContain(environmentName);
   });
 });
