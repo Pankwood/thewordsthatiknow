@@ -1,12 +1,12 @@
 name: End-to-end tests 🧪
-on: [push]
+
+on: deployment
+
 jobs:
-  cypress-run:
-    runs-on: ubuntu-20.04
+  regression:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
+      - uses: actions/vercel-cypress@v1
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          repo: https://github.com/NaiaOzorio/the-words-that-i-know-end-to-end
