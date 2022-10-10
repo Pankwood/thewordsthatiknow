@@ -1,6 +1,10 @@
 name: End-to-end tests 🧪
 
-on: deployment
+on:
+  push:
+    branches: [ "stage" ]
+  pull_request:
+    branches: [ "stage" ]
 
 jobs:
   regression:
