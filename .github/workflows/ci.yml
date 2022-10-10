@@ -7,15 +7,16 @@ on:
     branches: [ "stage" ]
 
 jobs:
-  regression:
-    runs-on: ubuntu-latest
+  cypress-run:
+    runs-on: ubuntu-20.04
     steps:
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           repository: NaiaOzorio/the-words-that-i-know-end-to-end
           token: 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
-
-          uses: bahmutov/npm-install@v1
-
-          uses: cypress-io/github-action@v4
