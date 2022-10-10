@@ -1,0 +1,11 @@
+{
+  "pluginsFile": false,
+  "viewportHeight": 880,
+  "viewportWidth": 1280,
+  "fixturesFolder": "e2e-tests/cypress/fixtures",
+  "integrationFolder": "e2e-tests/cypress/integration",
+  "screenshotsFolder": "e2e-tests/cypress/screenshots",
+  "videosFolder": "e2e-tests/cypress/videos",
+  "supportFile": "e2e-tests/cypress/support",
+  "downloadsFolder": "e2e-tests/cypress/downloads"
+}
