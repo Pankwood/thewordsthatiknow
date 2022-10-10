@@ -6,8 +6,15 @@ jobs:
   regression:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/vercel-cypress@v1
+        uses: actions/checkout@v3
         with:
+          name: Checkout the application repo 🛎
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          repo: NaiaOzorio/the-words-that-i-know-end-to-end
+          repository: NaiaOzorio/the-words-that-i-know-end-to-end
           token: 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
+
+          name: Install app dependencies 📦
+          uses: bahmutov/npm-install@v1
+
+          name: Cypress run with env
+          uses: cypress-io/github-action@v4
