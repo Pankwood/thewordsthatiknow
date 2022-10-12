@@ -43,3 +43,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Cypress
+e2e-tests/cypress/videos
+e2e-tests/cypress/screenshots
+e2e-tests/cypress/downloads
