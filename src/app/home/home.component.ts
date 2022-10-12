@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
           return;
         }
 
-        //For now, ignore the userId
+        //TODO Implemented userId. For now, ignore the userId
         let userId = localStorage.getItem("userId") ?? 0;
         console.debug("Chosen Language", this.selectedLanguage);
         //Saving the word and language (and userId)
