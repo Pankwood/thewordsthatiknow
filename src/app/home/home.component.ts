@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     return this.typedWords.length > 0 && this.typedWords[0] != '';
   }
 
-  btncheckWordsClick(form: any) {
+  btnCheckWordsClick(form: any) {
     //Get language from combobox cmblanguages
     this.selectedLanguage = form.value.cmblanguages ?? "en";
     this.clearForm();
@@ -114,7 +114,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  isDefaultChecked(item: string) {
+  //TODO Change to isSavedWord - remove functions name from test
+  isSavedWord(item: string) {
     //Check if the word exist in the DB and mark it as checked(green)
     return this.wordsFromDB.includes(item.trim().toLowerCase())
   }
