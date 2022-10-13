@@ -2,7 +2,7 @@ import { LanguagesService } from './../services/languages.service';
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../services/words.service';
 import { NotificationService } from '../services/notification.service';
-import { removeExtraSpace } from '../../utils';
+import { removeSpecialCharacteres } from '../../utils';
 
 
 @Component({
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
     this.selectedLanguage = form.value.cmblanguages ?? "en";
     this.clearForm();
     //Split all word in an array
-    this.typedWords = removeExtraSpace(form.value.text).split(' ');
+    this.typedWords = removeSpecialCharacteres(form.value.text).split(' ');
     if (this.isTypedWords()) {
       //Remove duplicated words
       this.typedWords = [...new Set(this.typedWords)];

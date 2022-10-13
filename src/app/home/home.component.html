@@ -20,7 +20,7 @@
     <div>
         <div>
             <h3>First Step</h3>
-            <p>Choose the target language, paste your text and click on Check it.</p>
+            <p>Choose the target language, type or paste your text and click on Check it.</p>
             <form ngForm #form="ngForm" (ngSubmit)="btnCheckWordsClick(form)">
                 <div>
                     <label for="cmblanguages">Language:</label>
@@ -36,11 +36,11 @@
                         </select>
                     </div>
                     <div class="textarea-wrapper">
-                        <textarea #text="ngModel" ngModel name="text" id="text" placeholder="Paste your text here"
-                            maxlength={{maxLengthWord}} (ngModelChange)="countCharacteres(text.value)"></textarea>
+                        <textarea #text="ngModel" ngModel name="text" id="text"
+                            placeholder="Type or paste your text here" maxlength={{maxLengthWord}}
+                            (ngModelChange)="countCharacteres(text.value)"></textarea>
                         <span class="remaning">{{remainCharacter}} / {{maxLengthWord}}</span>
                     </div>
-
                     <button id="btncheckWords" class="button">Check it</button>
                 </div>
             </form>
