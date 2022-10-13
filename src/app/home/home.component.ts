@@ -14,10 +14,13 @@ export class HomeComponent implements OnInit {
 
   wordsFromDB: string[] = [];
   typedWords: string[] = [];
+  countChararacteres: string = "";
   checkedWords: string[] = [];
   languages: any = [];
   selectedLanguage: string = "en";
   errorMessage: string = "";
+  maxLengthWord: number = 1000;
+  remainCharacter: number = this.maxLengthWord;
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
 
@@ -76,6 +79,9 @@ export class HomeComponent implements OnInit {
       this.errorMessage = "Type any word before check it in.";
       this.serviceNotification.showWarning(this.errorMessage, "Warning");
     }
+  }
+  countCharacteres(text: string) {
+    this.remainCharacter = this.maxLengthWord - text.length;
   }
 
   saveWords() {

@@ -252,4 +252,12 @@ describe('HomeComponent', () => {
     expect(result).toBeFalse();
   });
 
+  it('countCharacteres - should return 0', () => {
+    component.maxLengthWord = 10;
+
+    component.countCharacteres('1234567890');
+
+    expect(component.remainCharacter).toEqual(0);
+  });
+
 });
