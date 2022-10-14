@@ -316,3 +316,14 @@ select {
   margin-top: 5px;
 }
 
+.textarea-wrapper {
+  position: relative;
+}
+
+.remaning {
+  position: absolute;
+  bottom: -15px;
+  left: 5px;
+  font-size: 0.74rem;
+  color: var(--grayMedium)
+}

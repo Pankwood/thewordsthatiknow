@@ -2,7 +2,7 @@ import { LanguagesService } from './../services/languages.service';
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../services/words.service';
 import { NotificationService } from '../services/notification.service';
-import { removeExtraSpace } from '../../utils';
+import { removeSpecialCharacteres } from '../../utils';
 
 
 @Component({
@@ -14,10 +14,13 @@ export class HomeComponent implements OnInit {
 
   wordsFromDB: string[] = [];
   typedWords: string[] = [];
+  countChararacteres: string = "";
   checkedWords: string[] = [];
   languages: any = [];
   selectedLanguage: string = "en";
   errorMessage: string = "";
+  maxLengthWord: number = 1000;
+  remainCharacter: number = this.maxLengthWord;
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
 
@@ -51,12 +54,12 @@ export class HomeComponent implements OnInit {
     return this.typedWords.length > 0 && this.typedWords[0] != '';
   }
 
-  btncheckWordsClick(form: any) {
+  btnCheckWordsClick(form: any) {
     //Get language from combobox cmblanguages
     this.selectedLanguage = form.value.cmblanguages ?? "en";
     this.clearForm();
     //Split all word in an array
-    this.typedWords = removeExtraSpace(form.value.text).split(' ');
+    this.typedWords = removeSpecialCharacteres(form.value.text).split(' ');
     if (this.isTypedWords()) {
       //Remove duplicated words
       this.typedWords = [...new Set(this.typedWords)];
@@ -76,6 +79,9 @@ export class HomeComponent implements OnInit {
       this.errorMessage = "Type any word before check it in.";
       this.serviceNotification.showWarning(this.errorMessage, "Warning");
     }
+  }
+  countCharacteres(text: string) {
+    this.remainCharacter = this.maxLengthWord - text.length;
   }
 
   saveWords() {
@@ -114,7 +120,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  isDefaultChecked(item: string) {
+  //TODO Change to isSavedWord - remove functions name from test
+  isSavedWord(item: string) {
     //Check if the word exist in the DB and mark it as checked(green)
     return this.wordsFromDB.includes(item.trim().toLowerCase())
   }

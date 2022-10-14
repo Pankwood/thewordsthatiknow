@@ -37,24 +37,23 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('isDefaultChecked - should return false', () => {
+  it('if there is no word on DB it should return false', () => {
     component.wordsFromDB.push("");
 
-    let result = component.isDefaultChecked("test");
+    let result = component.isSavedWord("test");
 
     expect(result).toBeFalse();
   });
 
-  it('isDefaultChecked should return true', () => {
+  it('if there is word on DB it should return true', () => {
     component.wordsFromDB.push("test");
 
-    let result = component.isDefaultChecked("test");
+    let result = component.isSavedWord("test");
 
     expect(result).toBeTrue();
-
   });
 
-  it('changeCmbLanguages - should clear variables.', () => {
+  it('when Language combobox changed it should clear variables.', () => {
     component.wordsFromDB.push("test");
     component.typedWords.push("test");
     component.checkedWords.push("test");
@@ -67,65 +66,65 @@ describe('HomeComponent', () => {
     expect(component.checkedWords).toEqual([]);
   });
 
-  it('btncheckWordsClick - should checkedWords be empty', () => {
+  it('after click on CheckWords button it should empty the variable that has the words', () => {
     component.checkedWords.push("word");
     let form = { value: { text: "myword" } };
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(component.checkedWords).toEqual([]);
   });
 
-  it('btncheckWordsClick - should cmblanguages has its value changed.', () => {
+  it('after click on CheckWords button it should get the language  from Language combobox', () => {
     let form = { value: { text: "myword", cmblanguages: "ru" } };
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(component.selectedLanguage).toEqual("ru")
   });
 
-  it('btncheckWordsClick - should typedWords not have extra space.', () => {
+  it('after click on CheckWords button it should remove extra space from typed words.', () => {
     let form = { value: { text: "myword " } };
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(component.typedWords).toEqual(['myword']);
   });
 
-  it('btncheckWordsClick - should typedWords not be duplicated.', () => {
+  it('after click on CheckWords button it should remove duplicated words from typed words.', () => {
     let form = { value: { text: "myword myword" } };
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(component.typedWords).toEqual(['myword']);
   });
 
-  it('btncheckWordsClick - should subscribe getWordByWordAndLanguage with 2 words.', () => {
+  it('after click on CheckWords button it should get languages from service(2 words example)', () => {
     let form = { value: { text: "word1 word2" } };
     let spy = spyOn(service, 'getWordByWordAndLanguage').and.returnValue(from([form.value.text]))
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(spy).toHaveBeenCalled();
     expect(component.typedWords.length).toBe(2);
   });
 
-  it('btncheckWordsClick - should subscribe getWordByWordAndLanguage and shows error', () => {
+  it('after click on CheckWords button it should get languages from service and handle error', () => {
     let form = { value: { text: "word" } };
     let spy = spyOn(service, 'getWordByWordAndLanguage').and.callFake(() => {
       return throwError('');
     })
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(spy).toHaveBeenCalled();
     expect(component.errorMessage).not.toEqual('');
   });
 
-  it('btncheckWordsClick - should shows error if text is empty', () => {
+  it('after click on CheckWords button it should shows error if text is empty', () => {
     let form = { value: { text: "" } };
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(component.errorMessage).not.toEqual('');
   });
@@ -133,7 +132,7 @@ describe('HomeComponent', () => {
   it('btncheckWordsClick - should shows error if there is no word to add', () => {
     let form = { value: { text: "" } };
 
-    component.btncheckWordsClick(form);
+    component.btnCheckWordsClick(form);
 
     expect(component.errorMessage).not.toEqual('');
   });
@@ -251,6 +250,14 @@ describe('HomeComponent', () => {
     let result = component.isTypedWords();
 
     expect(result).toBeFalse();
+  });
+
+  it('countCharacteres - should return 0', () => {
+    component.maxLengthWord = 10;
+
+    component.countCharacteres('1234567890');
+
+    expect(component.remainCharacter).toEqual(0);
   });
 
 });
