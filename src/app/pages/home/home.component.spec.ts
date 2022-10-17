@@ -10,7 +10,6 @@ import { empty, from, Observable, of, throwError } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let service: WordsService;

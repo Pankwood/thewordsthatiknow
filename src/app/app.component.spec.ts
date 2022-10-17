@@ -9,7 +9,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,7 +23,7 @@ describe('AppComponent', () => {
         AppComponent,
         HeaderComponent,
         FooterComponent,
-        HomeComponent
+        HomeComponent,
       ],
     }).compileComponents();
   });

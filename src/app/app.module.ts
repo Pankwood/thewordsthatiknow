@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WordsService } from './services/words.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PageDefaultComponent } from './components/page-default/page-default.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
+    PageDefaultComponent,
   ],
   imports: [
     BrowserModule,
