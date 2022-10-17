@@ -1,14 +1,13 @@
-import { NotificationService } from './../services/notification.service';
+import { NotificationService } from '../../services/notification.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home.component';
 import { By } from '@angular/platform-browser';
-import { WordsService } from '../services/words.service';
+import { WordsService } from '../../services/words.service';
 import { empty, from, Observable, of, throwError } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 
 describe('HomeComponent', () => {

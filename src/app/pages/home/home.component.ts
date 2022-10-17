@@ -1,8 +1,8 @@
-import { LanguagesService } from './../services/languages.service';
+import { LanguagesService } from '../../services/languages.service';
 import { Component, OnInit } from '@angular/core';
-import { WordsService } from '../services/words.service';
-import { NotificationService } from '../services/notification.service';
-import { removeSpecialCharacteres } from '../../utils';
+import { WordsService } from '../../services/words.service';
+import { NotificationService } from '../../services/notification.service';
+import { removeSpecialCharacteres } from '../../../utils';
 
 
 @Component({
