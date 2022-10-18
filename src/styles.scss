@@ -31,3 +31,8 @@ body {
 a {
   color: inherit;
 }
+
+a:hover,
+button:hover {
+  opacity: 0.9;
+}
