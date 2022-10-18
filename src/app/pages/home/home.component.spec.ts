@@ -8,6 +8,7 @@ import { By } from '@angular/platform-browser';
 import { WordsService } from '../../services/words.service';
 import { empty, from, Observable, of, throwError } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 describe('HomeComponent', () => {
@@ -20,6 +21,7 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
       imports: [HttpClientModule, ToastrModule.forRoot(), FormsModule, BrowserAnimationsModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
 
