@@ -116,3 +116,15 @@ input {
   margin-bottom: 45px;
   margin-top: 5px;
 }
+
+@media (max-width: 800px) {
+
+  input,
+  select {
+    padding: 6px;
+  }
+
+  button {
+    padding: 12px 20px;
+  }
+}

@@ -3,14 +3,13 @@ app-modal {
     display: none;
 
     .modal {
-        /* modal container fixed across whole screen */
         position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
 
-        /* z-index must be higher than .jw-modal-background */
+        /* z-index must be higher than .modal-background */
         z-index: 1000;
 
         /* enables scrolling for tall modals */
@@ -19,28 +18,21 @@ app-modal {
         .modal-body {
             padding: 0 20px 20px;
             background: var(--black);
-
-            /* margin exposes part of the modal background */
             margin: 92px 25% auto 25%;
-
             border: 2px solid #2a7ae4;
             border-radius: 4px;
         }
     }
 
     .modal-background {
-        /* modal background fixed across whole screen */
         position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-
-        /* semi-transparent  */
         background-color: var(--grayMedium);
         opacity: 0.75;
-
-        /* z-index must be below .jw-modal and above everything else  */
+        /* z-index must be below .modal and above everything else  */
         z-index: 900;
     }
 }
