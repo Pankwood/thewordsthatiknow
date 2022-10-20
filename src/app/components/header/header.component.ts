@@ -14,4 +14,8 @@ export class HeaderComponent {
   openLoginModal() {
     this.modalService.open(this.modalService.modalLoginID);
   }
+
+  openSignUpModal() {
+    this.modalService.open(this.modalService.modalSignUpID);
+  }
 }

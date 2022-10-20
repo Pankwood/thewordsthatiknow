@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class ModalService {
   private modals: any[] = [];
-  public modalLoginID : string = "login";
+  public modalLoginID: string = "login";
+  public modalSignUpID: string = "signup";
 
   add(modal: any) {
     // add modal to array of active modals

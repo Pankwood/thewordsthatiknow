@@ -42,7 +42,7 @@ body.modal-open {
     overflow: hidden;
 }
 
-@media (max-width: 300px) {
+@media (max-width: 350px) {
     app-modal {
         .modal {
             .modal-body {
@@ -52,7 +52,7 @@ body.modal-open {
     }
 }
 
-@media (min-width:301px) and (max-width: 800px) {
+@media (min-width:351px) and (max-width: 800px) {
     app-modal {
         .modal {
             .modal-body {

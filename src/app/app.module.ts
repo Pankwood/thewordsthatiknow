@@ -16,6 +16,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PageDefaultComponent } from './components/page-default/page-default.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LoginComponent } from './pages/login/login.component';
     PageDefaultComponent,
     ModalComponent,
     LoginComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,

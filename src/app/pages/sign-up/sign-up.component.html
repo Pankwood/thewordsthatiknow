@@ -1,0 +1,19 @@
+<app-modal id={{modalId}}>
+    <div id={{modalId}}>
+        <form>
+            <h1>Sign Up</h1>
+            <label>Name</label>
+            <input type="text">
+            <label>Email</label>
+            <input type="text">
+            <label>Password</label>
+            <input type="password">
+            <label>Password</label>
+            <input type="password">
+        </form>
+        <div>
+            <button (click)="closeSignUpModal(modalId);">Sign Up</button>
+            <button (click)="closeSignUpModal(modalId);">Close</button>
+        </div>
+    </div>
+</app-modal>
