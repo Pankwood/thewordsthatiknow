@@ -1,7 +1,13 @@
-#login h1 {
+#login h2 {
     text-align: center;
 }
 
 #login button {
     margin-right: 20px;
+}
+
+#login a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
 }
