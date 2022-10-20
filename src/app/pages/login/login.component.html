@@ -1,0 +1,16 @@
+<app-modal id={{modalId}}>
+    <div id={{modalId}}>
+        <form>
+            <h2>Login</h2>
+            <label>Email</label>
+            <input type="text">
+            <label>Password</label>
+            <input type="password">
+            <p><a href="#">Forgot password</a></p>
+        </form>
+        <div>
+            <button (click)="closeLoginModal(modalId);">Login</button>
+            <button (click)="closeLoginModal(modalId);">Close</button>
+        </div>
+    </div>
+</app-modal>

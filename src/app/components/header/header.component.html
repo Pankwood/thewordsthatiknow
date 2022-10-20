@@ -6,8 +6,12 @@
     </div>
     <div id="divLinks">
         <ul>
-            <li><a href="#">Sign in</a></li>
+            <li><a href="#" (click)="openLoginModal()">Login</a></li>
+        </ul>
+        <ul>
+            <li><a href="#" (click)="openSignUpModal()">Sign Up</a></li>
         </ul>
     </div>
-
 </nav>
+<app-login></app-login>
+<app-sign-up></app-sign-up>
