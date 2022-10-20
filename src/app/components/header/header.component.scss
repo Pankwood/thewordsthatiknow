@@ -29,12 +29,12 @@
 
 #divLinks {
   float: right;
+  display: -webkit-inline-box;
   display: none;
 }
 
-#divLinks ul li {
-  display: inline;
-  padding-left: 20px;
+#divLinks ul {
+  list-style-type: none;
 }
 
 #divLinks ul li a {

@@ -36,3 +36,94 @@ a:hover,
 button:hover {
   opacity: 0.9;
 }
+
+button {
+  color: var(--white);
+  border: 1px solid var(--white);
+  background: var(--black);
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 16px 24px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  outline: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.3s ease 0s;
+}
+
+textarea {
+  background: var(--blackLighter);
+  color: var(--grayLight);
+  display: block;
+  width: 100%;
+  min-height: 150px;
+  font-size: 18px;
+  border-radius: 4px;
+  border-right: 0px;
+  border-left: 0px;
+  border-image: initial;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid var(--blackLighter);
+  transition: border-color 0.3s ease 0s;
+  padding: 16px;
+  margin-bottom: 45px;
+  resize: none;
+}
+
+select {
+  background: var(--blackLighter);
+  color: var(--grayLight);
+  width: 100%;
+  font-size: 18px;
+  border-radius: 4px;
+  border-right: 0px;
+  border-left: 0px;
+  border-image: initial;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid var(--blackLighter);
+  padding: 16px;
+  margin-bottom: 45px;
+  margin-top: 5px;
+}
+
+input {
+  background: var(--blackLighter);
+  color: var(--grayLight);
+  width: 100%;
+  font-size: 18px;
+  border-radius: 4px;
+  border-right: 0px;
+  border-left: 0px;
+  border-image: initial;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid var(--blackLighter);
+  padding: 12px;
+  margin-bottom: 25px;
+  margin-top: 5px;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: 0;
+  border-bottom-color: var(--primary);
+}
+
+textarea::placeholder {
+  color: var(--grayMedium);
+}
+
+@media (max-width: 800px) {
+
+  input,
+  select {
+    padding: 6px;
+  }
+
+  button {
+    padding: 12px 20px;
+  }
+}
