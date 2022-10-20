@@ -14,6 +14,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { WordsService } from './services/words.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PageDefaultComponent } from './components/page-default/page-default.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { PageDefaultComponent } from './components/page-default/page-default.com
     FooterComponent,
     NotFoundComponent,
     PageDefaultComponent,
+    ModalComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
