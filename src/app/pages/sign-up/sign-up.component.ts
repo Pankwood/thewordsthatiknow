@@ -13,14 +13,12 @@ export class SignUpComponent {
     this.modalId = modalService.modalSignUpID;
   }
 
-  openSignUpModal(id: string) {
-    console.log(id);
-    this.modalService.open(id);
+  openSignUpModal(modalId: string) {
+    this.modalService.open(modalId);
   }
 
-  closeSignUpModal(id: string) {
-    console.log(id);
-    this.modalService.close(id);
+  closeSignUpModal(modalId: string) {
+    this.modalService.close(modalId);
   }
 
 }

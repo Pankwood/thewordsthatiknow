@@ -13,12 +13,12 @@ export class LoginComponent {
     this.modalId = modalService.modalLoginID;
   }
 
-  openLoginModal(id: string) {
-    this.modalService.open(id);
+  openLoginModal(modalId: string) {
+    this.modalService.open(modalId);
   }
 
-  closeLoginModal(id: string) {
-    this.modalService.close(id);
+  closeLoginModal(modalId: string) {
+    this.modalService.close(modalId);
   }
 
 }
