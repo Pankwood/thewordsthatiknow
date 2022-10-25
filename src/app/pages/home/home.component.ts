@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
   saveWords() {
     //Validate if there is words to be checked
     if (this.checkedWords.length <= 0) {
-      this.errorMessage = "Choose the words you know before save it.";
+      this.errorMessage = "Word(s) has/have been already saved. Please choose another word(s).";
       this.serviceNotification.showWarning(this.errorMessage, "Warning");
       return;
     }
