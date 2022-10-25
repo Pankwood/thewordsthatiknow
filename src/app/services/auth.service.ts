@@ -10,7 +10,9 @@ import { tokenGetter } from '../app.module';
 })
 export class AuthService {
   currentUser: any;
-  url = environment.API_URL + "account/login";
+  urlLogin = environment.API_URL + "account/login";
+  urlSignup = environment.API_URL + "account/signup";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -24,7 +26,7 @@ export class AuthService {
   }
 
   login(credentials: any) {
-    return this.http.post(this.url,
+    return this.http.post(this.urlLogin,
       JSON.stringify(credentials),
       this.httpOptions)
       .pipe(
@@ -38,6 +40,10 @@ export class AuthService {
           }
           else return false;
         }));
+  }
+
+  signup(user: any) {
+    return this.http.post<any>(this.urlSignup, user, this.httpOptions);
   }
 
   logout() {

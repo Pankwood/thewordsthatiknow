@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { AuthService } from './../../services/auth.service';
-import { Router } from "@angular/router";
 import { NotificationService } from 'src/app/services/notification.service';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +11,7 @@ import { FormControl } from '@angular/forms';
 export class LoginComponent {
   correctCredentials: boolean = true;
   modalId: string;
-  constructor(private modalService: ModalService, private authService: AuthService, private router: Router, private serviceNotification: NotificationService) {
+  constructor(private modalService: ModalService, private authService: AuthService, private serviceNotification: NotificationService) {
     this.modalId = modalService.modalLoginID;
   }
 
@@ -23,9 +21,9 @@ export class LoginComponent {
       this.authService.login(credentials)
         .subscribe(result => {
           if (result) {
-            //this.router.navigate(['/']);
-            this.closeLoginModal(this.modalId);
             this.correctCredentials = true;
+            console.debug("Login", form.value);
+            this.closeLoginModal(this.modalId);
           }
           else {
             this.correctCredentials = false;
@@ -36,8 +34,9 @@ export class LoginComponent {
           }
           else
             this.serviceNotification.showError("Error to login. Try again later.", "Error");
+
+          console.debug("Error to login. Try again later.", error);
           this.authService.logout();
-          console.debug("Error login", error);
         });
     }
     else {
