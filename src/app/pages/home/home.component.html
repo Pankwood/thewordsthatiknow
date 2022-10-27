@@ -7,7 +7,7 @@
                     <h2 class="Description">Let's figure this out right now!</h2>
                 </div>
                 <div class="Item">
-                    <div class="VideoContainer"><iframe
+                    <div id="divVideoContainer" class="VideoContainer"><iframe
                             src="https://www.youtube.com/embed/iMaqzAkgUIs?autoplay=0&amp;mute=1" frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen=""
@@ -18,8 +18,8 @@
             </section>
         </section>
 
-        <div>
-            <div>
+        <section>
+            <div id="divFirstStep">
                 <h3>First Step</h3>
                 <p>Choose the target language, type or paste your text and click on Check it.</p>
                 <form ngForm #form="ngForm" (ngSubmit)="btnCheckWordsClick(form)">
@@ -47,7 +47,7 @@
                 </form>
             </div>
 
-            <div *ngIf="isTypedWords()">
+            <div id="divFirstStep" *ngIf="isTypedWords()">
                 <h3>Second Step</h3>
                 <p>Click on the words you know and save it. Next time, these words will show up already checked.</p>
                 <form (ngSubmit)="saveWords()" key="formPost">
@@ -61,6 +61,6 @@
                     <button>Save</button>
                 </form>
             </div>
-        </div>
+        </section>
     </div>
 </app-page-default>
