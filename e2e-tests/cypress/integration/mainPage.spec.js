@@ -20,8 +20,9 @@ describe('Validate Tutorial section', function(){
 })
 
 describe('Validade Language selection', function(){
-    it('Title, app name and logo', function() {
-        cy.contains('The Words That I Know')
-        cy.get('#divLogo img').should('be.visible')
+    it('Introductory text and Language menu selection', function() {
+        cy.contains('First Step')
+        cy.contains('Choose the target language, type or paste your text and click on Check it.')
+
     })
 })
