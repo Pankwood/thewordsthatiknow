@@ -52,7 +52,7 @@
                 <p>Click on the words you know and save it. Next time, these words will show up already checked.</p>
                 <form id="formSaveWords" (ngSubmit)="saveWords()" key="formPost">
                     <ul id="listWords" class="ks-cboxtags">
-                        <li id="itemword" *ngFor="let item of typedWords; let i = index;">
+                        <li id="itemWord" *ngFor="let item of typedWords; let i = index;">
                             <input type="checkbox" [id]="item+i" name="ckbWord" [value]="item"
                                 [checked]="isSavedWord(item)" (change)='wordChkSelect($event)' />
                             <label [for]="item+i"> {{item}} </label>
