@@ -13,7 +13,7 @@
                             allowfullscreen=""
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}span:hover{opacity:0.9}</style><a href=https://www.youtube.com/embed/iMaqzAkgUIs?autoplay=1&amp;mute=1><img loading=lazy src=https://img.youtube.com/vi/iMaqzAkgUIs/hqdefault.jpg alt=&quot;How many words do you think you know?&quot;><span>&amp;#x25BA;</span></a>"
                             title="How many words do you think you know?" class="ResponsiveIframe"></iframe></div>
-                    <button class="WatchButton">Watch</button>
+                    <button id="btnWatch" class="WatchButton">Watch</button>
                 </div>
             </section>
         </section>
@@ -42,7 +42,7 @@
                                 (ngModelChange)="countCharacteres(text.value)"></textarea>
                             <span class="remaning">{{remainCharacter}} / {{maxLengthWord}}</span>
                         </div>
-                        <button id="btncheckWords">Check it</button>
+                        <button id="btnCheckWords">Check it</button>
                     </div>
                 </form>
             </div>
@@ -58,7 +58,7 @@
                             <label [for]="item+i"> {{item}} </label>
                         </li>
                     </ul>
-                    <button>Save</button>
+                    <button id="btnSave">Save</button>
                 </form>
             </div>
         </section>
