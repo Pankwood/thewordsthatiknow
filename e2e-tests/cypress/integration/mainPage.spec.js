@@ -29,5 +29,16 @@ describe('Validade Language selection', function(){
     })
 })
 
+describe.only('Validade text box area', function(){
+    it('Characteres, word counter', function() {
+        const testExample = 'Teste@#1+*'
+        cy.get('#text').should('have.attr', 'maxlength', '10000')
+        cy.get('#remaning').should('have.text', '10000 / 10000')
+        cy.get('#text').type(testExample)
+        cy.get('#remaning').should('have.text', '9990 / 10000')
+        cy.get('#cmbLanguages').select('French')
+        cy.get('#text').should('have.value', testExample)
 
+    })
+})
 
