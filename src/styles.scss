@@ -116,6 +116,11 @@ textarea::placeholder {
   color: var(--grayMedium);
 }
 
+.ng-dirty.ng-invalid {
+  outline: 0;
+  border-bottom-color: var(--colorError);
+}
+
 @media (max-width: 800px) {
 
   input,
