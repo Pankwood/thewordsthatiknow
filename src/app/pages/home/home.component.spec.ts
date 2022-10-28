@@ -77,7 +77,7 @@ describe('HomeComponent', () => {
   });
 
   it('after click on CheckWords button it should get the language  from Language combobox', () => {
-    let form = { value: { text: "myword", cmblanguages: "ru" } };
+    let form = { value: { text: "myword", cmbLanguages: "ru" } };
 
     component.btnCheckWordsClick(form);
 

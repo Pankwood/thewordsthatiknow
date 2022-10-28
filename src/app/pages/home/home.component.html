@@ -24,12 +24,12 @@
                 <p>Choose the target language, type or paste your text and click on Check it.</p>
                 <form id="formCheckWords" ngForm #form="ngForm" (ngSubmit)="btnCheckWordsClick(form)">
                     <div>
-                        <label for="cmblanguages">Language:</label>
+                        <label for="cmbLanguages">Language:</label>
                         <div>
-                            <!--TODO Double check the ngModel structure. Why ngModel="en". Why the event has $event not cmblanguages? Where is name attr?  Where is required See 4-ngModel-Mosh-->
-                            <!--Try: <select #cmblanguages="ngModel" ngModel name="cmblanguages" id="cmblanguages" name="cmblanguages" required
-                            (change)="changeCmbLanguages(cmblanguages)">-->
-                            <select #cmblanguages="ngModel" ngModel="en" name="cmblanguages" id="cmblanguages"
+                            <!--TODO Double check the ngModel structure. Why ngModel="en". Why the event has $event not cmbLanguages? Where is name attr?  Where is required See 4-ngModel-Mosh-->
+                            <!--Try: <select #cmbLanguages="ngModel" ngModel name="cmbLanguages" id="cmbLanguages" name="cmbLanguages" required
+                            (change)="changeCmbLanguages(cmbLanguages)">-->
+                            <select #cmbLanguages="ngModel" ngModel="en" name="cmbLanguages" id="cmbLanguages"
                                 (change)="changeCmbLanguages($event)">
                                 <option *ngFor="let language of languages ; let i = index" [value]="language.id"
                                     [selected]="language.id=='en'">{{language.language}}

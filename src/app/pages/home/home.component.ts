@@ -55,8 +55,8 @@ export class HomeComponent implements OnInit {
   }
 
   btnCheckWordsClick(form: any) {
-    //Get language from combobox cmblanguages
-    this.selectedLanguage = form.value.cmblanguages ?? "en";
+    //Get language from combobox cmbLanguages
+    this.selectedLanguage = form.value.cmbLanguages ?? "en";
     this.clearForm();
     //Split all word in an array
     this.typedWords = removeSpecialCharacteres(form.value.text).split(' ');
