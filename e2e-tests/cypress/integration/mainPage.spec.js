@@ -29,16 +29,38 @@ describe('Validade Language selection', function(){
     })
 })
 
-describe.only('Validade text box area', function(){
+describe('Validade textbox area', function(){
     it('Characteres, word counter', function() {
         const testExample = 'Teste@#1+*'
         cy.get('#text').should('have.attr', 'maxlength', '10000')
         cy.get('#remaning').should('have.text', '10000 / 10000')
         cy.get('#text').type(testExample)
         cy.get('#remaning').should('have.text', '9990 / 10000')
-        cy.get('#cmbLanguages').select('French')
+        cy.get('#cmbLanguages').select(2)
         cy.get('#text').should('have.value', testExample)
 
     })
 })
 
+describe.only('Validade Check it button', function(){
+    const testSimpleCharacters = 'Your text here'
+    const testSpecialCharacters = '!@#$%^&*'
+    const testAllCharacters = 'Stage  test  Stage test @!#'
+    it('Textbox area empty', function() {
+        cy.get('#text').should('be.empty')
+        cy.get('#btnCheckWords').click()
+        cy.get('#toast-container > div > div.toast-message').should('have.text', ' Type any word before check it in. ')
+    })
+    it('Special characters only on textbox area', function() {
+        cy.get('#text').type(testSpecialCharacters)
+        cy.get('#btnCheckWords').click()
+        cy.get('#toast-container > div > div.toast-message').should('have.text', ' Type any word before check it in. ')
+    })
+    it.only('Change language after text added on textbox area', function() {
+        cy.get('#text').type(testSimpleCharacters)
+        cy.get('#btnCheckWords').click()
+        cy.get('#divSecondStep').should('be.visible')
+        cy.get('#cmbLanguages').select(2)
+        cy.get('#text').should('be.empty')
+        cy.get('#divSecondStep').should('not.exist')
+    })
