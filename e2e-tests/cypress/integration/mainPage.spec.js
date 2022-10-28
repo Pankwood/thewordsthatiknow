@@ -19,13 +19,15 @@ describe('Validate Tutorial section', function(){
     })
 })
 
-describe.only('Validade Language selection', function(){
+describe('Validade Language selection', function(){
     it('Introductory text and Language menu selection', function() {
         cy.get('#divFirstStep > h3').should('have.text','First Step')
         cy.get('#divFirstStep > p').should('have.text','Choose the target language, type or paste your text and click on Check it.')
-        cy.get('#cmblanguages').select('French').should('have.value', 'fr')
-        cy.get('#cmblanguages').select('English').should('have.value', 'en')
-        cy.get('#cmblanguages').select('Portuguese').should('have.value', 'pt')
+        cy.get('#cmbLanguages').select('French').should('have.value', 'fr')
+        cy.get('#cmbLanguages').select('English').should('have.value', 'en')
+        cy.get('#cmbLanguages').select('Portuguese').should('have.value', 'pt')
     })
 })
+
+
 
