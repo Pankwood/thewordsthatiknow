@@ -63,6 +63,8 @@ export class HomeComponent implements OnInit {
     if (this.isTypedWords()) {
       //Remove duplicated words
       this.typedWords = [...new Set(this.typedWords)];
+      //Remove empty values
+      this.typedWords = this.typedWords.filter(String);
       this.typedWords.forEach(word => {
         this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
           if (data != null)
