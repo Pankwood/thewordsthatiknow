@@ -27,18 +27,12 @@
   vertical-align: middle;
 }
 
-#divLinks {
-  float: right;
-  display: -webkit-inline-box;
-  /*display: none;*/
+.ul-open {
+  transform: translateX(0); //${({ open })=>open ? 'translateX(0)': 'translateX(100%)'};
 }
 
-#divLinks ul {
-  list-style-type: none;
-}
-
-#divLinks ul li a {
-  text-decoration: none;
+.ul-close {
+  transform: translateX(100%); //${({ open })=>open ? 'translateX(0)': 'translateX(100%)'};
 }
 
 @media (max-width: 800px) {

@@ -18,6 +18,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { BurguerComponent } from './components/burguer/burguer.component';
+import { NavigationLinksComponent } from './components/navigation-links/navigation-links.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -34,6 +36,8 @@ export function tokenGetter() {
     ModalComponent,
     LoginComponent,
     SignUpComponent,
+    BurguerComponent,
+    NavigationLinksComponent,
   ],
   imports: [
     BrowserModule,
