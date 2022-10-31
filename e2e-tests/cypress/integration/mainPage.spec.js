@@ -56,7 +56,7 @@ describe.only('Validade Check it button', function(){
         cy.get('#btnCheckWords').click()
         cy.get('#toast-container > div > div.toast-message').should('have.text', ' Type any word before check it in. ')
     })
-    it.only('Change language after text added on textbox area', function() {
+    it('Change language after text added on textbox area', function() {
         cy.get('#text').type(testSimpleCharacters)
         cy.get('#btnCheckWords').click()
         cy.get('#divSecondStep').should('be.visible')
@@ -64,3 +64,18 @@ describe.only('Validade Check it button', function(){
         cy.get('#text').should('be.empty')
         cy.get('#divSecondStep').should('not.exist')
     })
+    it.only('Change language after text added on textbox area', function() {
+        cy.get('#text').type(testAllCharacters)
+        cy.get('#btnCheckWords').click()
+        cy.get('#divSecondStep').should('be.visible')
+        cy.get('#Stage0')
+        .should('have.value', 'Stage')
+        .should('be.checked')
+        cy.get('#test1').should('have.value', 'test')
+        .should('not.be.checked')
+        cy.get('input[value="Stage"]').should('length', 1)
+        cy.get('input[value="test"]').should('length', 1)
+        cy.get('input[value=" "]').should('not.exist')
+        cy.get('input[value="@!#"]').should('not.exist')
+    })
+})
