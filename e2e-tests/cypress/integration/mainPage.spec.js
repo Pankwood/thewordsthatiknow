@@ -1,5 +1,7 @@
 /// <reference types="Cypress" />
 
+const faker = require('faker')
+
 before('Visit web page', function() {
     cy.visit('https://thewordsthatiknow-app-git-stage-pankwood.vercel.app/')
 })  
@@ -18,7 +20,6 @@ describe('Validate Tutorial section', function(){
         
     })
 })
-
 describe('Validade Language selection', function(){
     it('Introductory text and Language menu selection', function() {
         cy.get('#divFirstStep > h3').should('have.text','First Step')
@@ -42,7 +43,7 @@ describe('Validade textbox area', function(){
     })
 })
 
-describe.only('Validade Check it button', function(){
+describe('Validade Check it button', function(){
     const testSimpleCharacters = 'Your text here'
     const testSpecialCharacters = '!@#$%^&*'
     const testAllCharacters = 'Stage  test  Stage test @!#'
@@ -64,7 +65,7 @@ describe.only('Validade Check it button', function(){
         cy.get('#text').should('be.empty')
         cy.get('#divSecondStep').should('not.exist')
     })
-    it.only('Change language after text added on textbox area', function() {
+    it('Change language after text added on textbox area', function() {
         cy.get('#text').type(testAllCharacters)
         cy.get('#btnCheckWords').click()
         cy.get('#divSecondStep').should('be.visible')
@@ -79,3 +80,58 @@ describe.only('Validade Check it button', function(){
         cy.get('input[value="@!#"]').should('not.exist')
     })
 })
+
+describe.only('Validade Save it funcionality', function(){
+    const testSavedWord = 'Stage'
+    const randomWord = faker.random.alpha(10)
+    it('Save it button to be displayed', function() {
+        cy.get('#text').type(testSavedWord)
+        cy.get('#btnCheckWords').click()
+        cy.get('#divSecondStep').should('be.visible')
+        cy.get('#btnSave').should('exist')
+    })
+    
+    it('Not able to save a word already saved on DB', function() {
+        cy.get('#text').type(testSavedWord)
+        cy.get('#btnCheckWords').click()
+        cy.get('#Stage0').should('be.checked')
+        cy.get('#btnSave').click()
+        cy.get('#toast-container > div > div.toast-message').should('have.text', ' Word(s) has/have been already saved. Please choose another word(s). ')
+    }) 
+    it('Successfully save a new word on DB', function() {
+        cy.get('#text').type(randomWord)
+        cy.get('#btnCheckWords').click()
+        cy.get('input[value='+randomWord)
+           .should('not.be.checked')
+           .click()
+           .should('be.checked')
+        cy.get('#btnSave').click()
+        cy.get('#toast-container > div > div.toast-message').should('have.text', ' Word(s) saved. ')
+    })
+    it('Attempt to save a word without choose one', function() {
+        cy.get('#text').type(randomWord)
+        cy.get('#btnCheckWords').click()
+        cy.get('input[value='+randomWord)
+           .should('not.be.checked')
+        cy.get('#btnSave').click()
+        cy.get('#toast-container > div > div.toast-message').should('have.text', ' Word(s) has/have been already saved. Please choose another word(s). ')
+    }) 
+
+    it.only('Saving a word in different languages', function() {
+        cy.get('#text').type(randomWord)
+        cy.get('#btnCheckWords').click()
+        cy.get('input[value='+randomWord)
+           .should('not.be.checked')
+        cy.get('#btnSave').click()
+        cy.get('#toast-container > div > div.toast-message').should('have.text', ' Word(s) has/have been already saved. Please choose another word(s). ')
+        cy.get('#cmbLanguages').select(2)
+        cy.get('#divSecondStep').should('not.exist')
+        cy.get('#btnCheckWords').click()
+        cy.get('input[value='+randomWord)
+        .should('not.be.checked')
+        .click()
+        .should('be.checked')
+        cy.get('#btnSave').click()
+        cy.get('#toast-container > div > div.toast-message').should('have.text', ' Word(s) saved. ')
+    }) 
+})  
