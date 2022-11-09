@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   languages: any = [];
   selectedLanguage: string = "en";
   errorMessage: string = "";
-  maxLengthWord: number = 1000;
+  maxLengthWord: number = 10000;
   remainCharacter: number = this.maxLengthWord;
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
@@ -55,14 +55,16 @@ export class HomeComponent implements OnInit {
   }
 
   btnCheckWordsClick(form: any) {
-    //Get language from combobox cmblanguages
-    this.selectedLanguage = form.value.cmblanguages ?? "en";
+    //Get language from combobox cmbLanguages
+    this.selectedLanguage = form.value.cmbLanguages ?? "en";
     this.clearForm();
     //Split all word in an array
     this.typedWords = removeSpecialCharacteres(form.value.text).split(' ');
     if (this.isTypedWords()) {
       //Remove duplicated words
       this.typedWords = [...new Set(this.typedWords)];
+      //Remove empty values
+      this.typedWords = this.typedWords.filter(String);
       this.typedWords.forEach(word => {
         this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
           if (data != null)
