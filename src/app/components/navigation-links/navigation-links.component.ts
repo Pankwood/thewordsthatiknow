@@ -8,7 +8,6 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./navigation-links.component.scss']
 })
 export class NavigationLinksComponent {
-
   constructor(private modalService: ModalService, public authService: AuthService) { }
 
   openLoginModal() {
@@ -18,4 +17,12 @@ export class NavigationLinksComponent {
   openSignUpModal() {
     this.modalService.open(this.modalService.modalSignUpID);
   }
+
+  getFirstName() {
+    if (!this.authService?.currentUser?.fullName)
+      return "";
+    let fullName = this.authService.currentUser.fullName;
+    return "Welcome " + fullName.substring(0, fullName.indexOf(' ')) + "!";
+  }
+
 }

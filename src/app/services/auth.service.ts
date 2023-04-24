@@ -9,7 +9,6 @@ import { tokenGetter } from '../app.module';
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser: any;
   urlLogin = environment.API_URL + "account/login";
   urlSignup = environment.API_URL + "account/signup";
 
@@ -34,7 +33,7 @@ export class AuthService {
           if (response.accessToken) {
             localStorage.setItem('token', response.accessToken);
 
-            this.currentUser = tokenGetter();
+            //this.currentUser = tokenGetter();
 
             return true;
           }
@@ -48,7 +47,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.currentUser = null;
   }
 
   isLoggedIn() {
@@ -56,7 +54,14 @@ export class AuthService {
     if (!token)
       return false;
 
-    const jwt = new JwtHelperService();
-    return !jwt.isTokenExpired(token);
+    return !new JwtHelperService().isTokenExpired(token);
+  }
+
+  get currentUser() {
+    const token = localStorage.getItem('token');
+    if (!token)
+      return null;
+
+    return new JwtHelperService().decodeToken(token);
   }
 }
