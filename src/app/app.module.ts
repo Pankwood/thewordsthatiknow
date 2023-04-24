@@ -64,7 +64,7 @@ export function tokenGetter() {
   ],
   providers: [
     WordsService,
-    JwtHelperService,
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })

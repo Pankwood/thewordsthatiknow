@@ -52,7 +52,11 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    const token = localStorage.getItem('token');
+    if (!token)
+      return false;
+
     const jwt = new JwtHelperService();
-    return jwt.isTokenExpired('token');
+    return !jwt.isTokenExpired(token);
   }
 }

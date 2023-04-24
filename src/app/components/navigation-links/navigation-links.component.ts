@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Component } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class NavigationLinksComponent {
 
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService, public authService: AuthService) { }
 
   openLoginModal() {
     this.modalService.open(this.modalService.modalLoginID);
@@ -17,5 +18,4 @@ export class NavigationLinksComponent {
   openSignUpModal() {
     this.modalService.open(this.modalService.modalSignUpID);
   }
-
 }
