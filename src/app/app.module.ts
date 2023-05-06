@@ -17,6 +17,13 @@ import { PageDefaultComponent } from './components/page-default/page-default.com
 import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { BurguerComponent } from './components/burguer/burguer.component';
+import { NavigationLinksComponent } from './components/navigation-links/navigation-links.component';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -29,6 +36,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     ModalComponent,
     LoginComponent,
     SignUpComponent,
+    BurguerComponent,
+    NavigationLinksComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,9 +54,17 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
       resetTimeoutOnDuplicate: true,
       includeTitleDuplicates: true
     }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["example.com"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      },
+    }),
   ],
   providers: [
     WordsService,
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })

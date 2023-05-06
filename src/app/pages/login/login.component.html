@@ -1,16 +1,33 @@
 <app-modal id={{modalId}}>
     <div id={{modalId}}>
-        <form>
+        <form id="formLogin" ngForm #form="ngForm" (ngSubmit)="login(form)">
             <h2>Login</h2>
-            <label>Email</label>
-            <input type="text">
-            <label>Password</label>
-            <input type="password">
+            <label for="inputEmail">Email</label>
+            <input type="email" id="inputEmail" name="email" ngModel class="form-control" placeholder="Email address"
+                autocomplete="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required autofocus />
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" name="password" ngModel class="form-control"
+                autocomplete="current-password" placeholder="Password" required />
+            <div
+                *ngIf="(form.controls.email?.touched || form.controls.email?.dirty) && form.controls.email.errors?.pattern">
+                Incorrect email.
+            </div>
+            <div
+                *ngIf="(form.controls.email?.touched || form.controls.email?.dirty)  && form.controls.email.errors?.required">
+                Email is required.
+            </div>
+            <div
+                *ngIf="(form.controls.password?.touched || form.controls.password?.dirty)  && form.controls.password.errors?.required">
+                Password is required.
+            </div>
+            <div *ngIf="!correctCredentials">
+                User or password incorrect.
+            </div>
             <p><a href="#">Forgot password</a></p>
+            <div>
+                <button id="btnLogin" type="submit">Login</button>
+                <button id="btnClose" type="reset" (click)="closeLoginModal(modalId);">Close</button>
+            </div>
         </form>
-        <div>
-            <button (click)="closeLoginModal(modalId);">Login</button>
-            <button (click)="closeLoginModal(modalId);">Close</button>
-        </div>
     </div>
 </app-modal>

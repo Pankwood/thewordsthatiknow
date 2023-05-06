@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { LanguagesService } from '../../services/languages.service';
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../../services/words.service';
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
   maxLengthWord: number = 10000;
   remainCharacter: number = this.maxLengthWord;
 
-  constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService, private serviceNotification: NotificationService) {
+  constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService,
+    private serviceNotification: NotificationService, private authService: AuthService) {
 
   }
   ngOnInit(): void {
@@ -66,7 +68,7 @@ export class HomeComponent implements OnInit {
       //Remove empty values
       this.typedWords = this.typedWords.filter(String);
       this.typedWords.forEach(word => {
-        this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
+        this.serviceWord.getWordByParameters(word, this.selectedLanguage, this.authService.currentUser.userId).subscribe(data => {
           if (data != null)
             this.wordsFromDB.push(data.wordName).toString();
         }, error => {
@@ -96,7 +98,7 @@ export class HomeComponent implements OnInit {
     //For each word of checkedWords array do:
     this.checkedWords.forEach(word => {
       //Get word and language from DB
-      this.serviceWord.getWordByWordAndLanguage(word, this.selectedLanguage).subscribe(data => {
+      this.serviceWord.getWordByParameters(word, this.selectedLanguage, this.authService.currentUser.userId).subscribe(data => {
         //If there is word and language from the DB equal to the word and language the user is trying to save, skip it.
         let isWordDuplicated = data != null;
 
@@ -105,10 +107,15 @@ export class HomeComponent implements OnInit {
           return;
         }
 
-        //TODO Implemented userId. For now, ignore the userId
-        let userId = localStorage.getItem("userId") ?? 0;
+        if (!this.authService.currentUser.userId) {
+          console.debug("User not logged in", this.authService.currentUser)
+          this.errorMessage = "User not logged in";//not showing to the user
+          return;
+        }
+
+        let userId = this.authService.currentUser.userId;
         console.debug("Chosen Language", this.selectedLanguage);
-        //Saving the word and language (and userId)
+        //Saving word, language and userId
         this.serviceWord.saveWord({ languageId: this.selectedLanguage, userId: userId, wordName: word }).subscribe(() => {
           this.serviceNotification.showSuccess("Word(s) saved.", "Success");
           console.debug("Saved Words", this.checkedWords);

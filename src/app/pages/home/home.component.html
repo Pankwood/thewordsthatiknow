@@ -38,7 +38,7 @@
                         </div>
                         <div class="textarea-wrapper">
                             <textarea #text="ngModel" ngModel name="text" id="text"
-                                placeholder="Type or paste your text here" maxlength={{maxLengthWord}}
+                                placeholder="Type or paste your text here" maxlength={{maxLengthWord}} required
                                 (ngModelChange)="countCharacteres(text.value)"></textarea>
                             <span id="remaning" class="remaning">{{remainCharacter}} / {{maxLengthWord}}</span>
                         </div>

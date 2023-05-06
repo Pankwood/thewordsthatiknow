@@ -22,8 +22,8 @@ export class WordsService {
     return this.http.get<any>(this.url);
   }
 
-  getWordByWordAndLanguage(wordName: string, languageId: string) {
-    const params = `/${wordName}/language/${languageId}`;
+  getWordByParameters(wordName: string, languageId: string, userId: any) {
+    const params = `/${wordName}/language/${languageId}/userId/${userId}`;
     return this.http.get<any>(this.url + params);
   }
 

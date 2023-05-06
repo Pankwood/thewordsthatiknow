@@ -1,19 +1,51 @@
 <app-modal id={{modalId}}>
     <div id={{modalId}}>
-        <form>
+        <form id="formSignup" ngForm #form="ngForm" (ngSubmit)="signup(form)">
             <h2>Sign Up</h2>
-            <label>Name</label>
-            <input type="text">
+            <label>Full name</label>
+            <input type="text" name="fullName" id="fullName" ngModel class="form-control" placeholder="Full name"
+                required autofocus autocomplete="name">
             <label>Email</label>
-            <input type="text">
+            <input type="text" name="email" id="email" ngModel class="form-control" placeholder="Email address" required
+                autocomplete="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
             <label>Password</label>
-            <input type="password">
+            <input type="password" name="password" id="password" ngModel class="form-control" #password="ngModel"
+                placeholder="Password" required autocomplete="new-password" />
             <label>Confirm Password</label>
-            <input type="password">
+            <input type="password" name="confirmPassword" id="confirmPassword" ngModel #confirmPassword="ngModel"
+                class="form-control" placeholder="Confirm password" required autocomplete="new-password" />
+
+            <div
+                *ngIf="(form.controls.fullName?.touched || form.controls.fullName?.dirty)  && form.controls.fullName.errors?.required">
+                Full name is required.
+            </div>
+            <div
+                *ngIf="(form.controls.email?.touched || form.controls.email?.dirty) && form.controls.email.errors?.pattern">
+                Incorrect email.
+            </div>
+            <div
+                *ngIf="(form.controls.email?.touched || form.controls.email?.dirty)  && form.controls.email.errors?.required">
+                Email is required.
+            </div>
+            <div
+                *ngIf="(form.controls.confirmPassword?.touched || form.controls.confirmPassword?.dirty)  && form.controls.confirmPassword.errors?.required">
+                Password is required.
+            </div>
+            <div
+                *ngIf="(form.controls.password?.touched || form.controls.password?.dirty)  && form.controls.password.errors?.required">
+                Confirm password is required.
+            </div>
+            <div *ngIf="userAlreadyExists">
+                User already exists.
+            </div>
+            <div *ngIf="!passwordMatch">
+                Password doesn't match.
+            </div>
+            <p></p>
+            <div>
+                <button id="btnSignup" type="submit">Sign Up</button>
+                <button id="btnClose" type="reset" (click)="closeSignUpModal(modalId);">Close</button>
+            </div>
         </form>
-        <div>
-            <button (click)="closeSignUpModal(modalId);">Sign Up</button>
-            <button (click)="closeSignUpModal(modalId);">Close</button>
-        </div>
     </div>
 </app-modal>

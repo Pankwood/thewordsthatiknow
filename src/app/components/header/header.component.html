@@ -1,17 +1,12 @@
-<header class="header">
-    <div id="divLogo">
-        <a href="/">
-            <img class="logo" src="../../assets/images/Logo.png" alt="Logo Words That I Know" />
-        </a>
-    </div>
-    <nav id="divLinks">
-        <ul>
-            <li><a href="#" (click)="openLoginModal()">Login</a></li>
-        </ul>
-        <ul>
-            <li><a href="#" (click)="openSignUpModal()">Sign Up</a></li>
-        </ul>
-    </nav>
-</header>
+<nav class="header">
+    <a href="/">
+        <img class="logo" src="../../assets/images/Logo.png" alt="Logo Words That I Know" />
+    </a>
+
+    <app-burguer (getValue)="burgerToggle($event)"></app-burguer>
+    <ul app-navigation-links [class.ul-open]=" isBurgerOpen" [class.ul-close]="!isBurgerOpen">
+    </ul>
+
+</nav>
 <app-login></app-login>
 <app-sign-up></app-sign-up>

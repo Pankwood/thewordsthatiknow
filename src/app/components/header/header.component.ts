@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from 'src/app/pages/login/login.component';
-import { ModalService } from 'src/app/services/modal.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +7,9 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class HeaderComponent {
 
-  constructor(private modalService: ModalService) { }
+  isBurgerOpen: boolean = false;
 
-  openLoginModal() {
-    this.modalService.open(this.modalService.modalLoginID);
-  }
-
-  openSignUpModal() {
-    this.modalService.open(this.modalService.modalSignUpID);
+  burgerToggle(isOpen: boolean) {
+    this.isBurgerOpen = isOpen;
   }
 }

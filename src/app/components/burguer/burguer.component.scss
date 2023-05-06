@@ -1,0 +1,62 @@
+:host {
+    width: 2rem;
+    height: 2rem;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 50;
+    display: none;
+
+    @media (max-width: 800px) {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: column nowrap;
+    }
+
+
+    .burguer-slice {
+        width: 2rem;
+        height: 0.35rem;
+        border-radius: 10px;
+        transform-origin: 1px;
+        transition: transform .3s ease-in-out;
+    }
+
+    .burguer-slice-open {
+
+        background-color: var(--grayLight); //${({ open })=>open ? 'var(--grayLight)': 'var(--blackLighter)'}
+
+
+        &:nth-child(1) {
+            transform: rotate(405deg); //${({ open })=>open ? 'rotate(405deg)': 'rotate(0)'};
+        }
+
+        &:nth-child(2) {
+            transform: rotate(-360deg); //${({ open })=>open ? 'rotate(-360deg)': 'rotate(360deg)'};
+            opacity: 0; //${({ open })=>open ? 0 : 1};
+        }
+
+        &:nth-child(3) {
+            transform: rotate(-405deg); //${({ open })=>open ? 'rotate(-405deg)': 'rotate(360deg)'};
+        }
+    }
+
+    .burguer-slice-close {
+
+        background-color: var(--blackLighter); //${({ open })=>open ? 'var(--grayLight)': 'var(--blackLighter)'}
+
+
+        &:nth-child(1) {
+            transform: rotate(0); //${({ open })=>open ? 'rotate(405deg)': 'rotate(0)'};
+        }
+
+        &:nth-child(2) {
+            transform: rotate(360deg); //${({ open })=>open ? 'rotate(-360deg)': 'rotate(360deg)'};
+            opacity: 1; //${({ open })=>open ? 0 : 1};
+        }
+
+        &:nth-child(3) {
+            transform: rotate(360deg); //${({ open })=>open ? 'rotate(-405deg)': 'rotate(360deg)'};
+        }
+    }
+}

@@ -1,0 +1,4 @@
+<li *ngIf="authService.isLoggedIn()">{{getFirstName()}}</li>
+<li *ngIf="!authService.isLoggedIn()"><a href="#" (click)="openLoginModal()">Login</a></li>
+<li *ngIf="!authService.isLoggedIn()"><a href="#" (click)="openSignUpModal()">Sign Up</a></li>
+<li *ngIf="authService.isLoggedIn()"><a href="#" (click)="authService.logout()">Logout</a></li>
