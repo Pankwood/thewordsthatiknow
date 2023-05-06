@@ -24,7 +24,12 @@ export class AuthService {
     tokenGetter();
   }
 
+  ngOnDestroy(): void {
+    this.logout();
+  }
+
   login(credentials: any) {
+    this.logout();
     return this.http.post(this.urlLogin,
       JSON.stringify(credentials),
       this.httpOptions)
@@ -32,9 +37,6 @@ export class AuthService {
         map((response: any) => {
           if (response.accessToken) {
             localStorage.setItem('token', response.accessToken);
-
-            //this.currentUser = tokenGetter();
-
             return true;
           }
           else return false;
