@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   languages: any = [];
   selectedLanguage: string = "en";
   errorMessage: string = "";
-  maxLengthWord: number = 10000;
+  maxLengthWord: number = 100000;
   remainCharacter: number = this.maxLengthWord;
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService,
