@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   errorMessage: string = "";
   maxLengthWord: number = 100000;
   remainCharacter: number = this.maxLengthWord;
+  selectLanguage = "en";
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService,
     private serviceNotification: NotificationService, private authService: AuthService) {
@@ -35,6 +36,10 @@ export class HomeComponent implements OnInit {
         this.serviceNotification.showError("There is no language data to show. Contact the administrator.", "Error");
 
       //console.debug("Languages", this.languages);
+      var lastLanguage = localStorage.getItem("lastLanguage");
+
+      this.selectLanguage = lastLanguage ? lastLanguage : "en";
+
     }, error => {
       this.serviceNotification.showError("Error to load languages. Try again later.", "Error");
       console.dir("Error to load languages.", error);
@@ -49,6 +54,7 @@ export class HomeComponent implements OnInit {
 
   changeCmbLanguages(event: any) {
     console.debug("Language selected", event.target.value);
+    localStorage.setItem("lastLanguage", event.target.value);
     this.clearForm();
   }
 

@@ -29,7 +29,7 @@
                             <!--TODO Double check the ngModel structure. Why ngModel="en". Why the event has $event not cmbLanguages? Where is name attr?  Where is required See 4-ngModel-Mosh-->
                             <!--Try: <select #cmbLanguages="ngModel" ngModel name="cmbLanguages" id="cmbLanguages" name="cmbLanguages" required
                             (change)="changeCmbLanguages(cmbLanguages)">-->
-                            <select #cmbLanguages="ngModel" ngModel="en" name="cmbLanguages" id="cmbLanguages"
+                            <select #cmbLanguages="ngModel" [(ngModel)]="selectLanguage" name="cmbLanguages" id="cmbLanguages"
                                 (change)="changeCmbLanguages($event)">
                                 <option *ngFor="let language of languages ; let i = index" [value]="language.id"
                                     [selected]="language.id=='en'">{{language.language}}
