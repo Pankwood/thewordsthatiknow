@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   maxLengthWord: number = 100000;
   remainCharacter: number = this.maxLengthWord;
   selectLanguage = "en";
+  bannerIsExpanded = true;
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService,
     private serviceNotification: NotificationService, private authService: AuthService) {
@@ -35,10 +36,12 @@ export class HomeComponent implements OnInit {
       if (data.length <= 0)
         this.serviceNotification.showError("There is no language data to show. Contact the administrator.", "Error");
 
-      //console.debug("Languages", this.languages);
+      //Set Language combobox to remember the last user's choice
       var lastLanguage = localStorage.getItem("lastLanguage");
-
       this.selectLanguage = lastLanguage ? lastLanguage : "en";
+
+      //Set Banner show/hide button to remember the last user's choice
+      this.bannerIsExpanded = localStorage.getItem("bannerIsExpanded") == "0" ? false : true;
 
     }, error => {
       this.serviceNotification.showError("Error to load languages. Try again later.", "Error");
@@ -155,5 +158,10 @@ export class HomeComponent implements OnInit {
         this.checkedWords.splice(index, 1);
       }
     }
+  }
+
+  bannerToggle() {
+    this.bannerIsExpanded = !this.bannerIsExpanded;
+    localStorage.setItem("bannerIsExpanded", this.bannerIsExpanded ? "1" : "0");
   }
 }

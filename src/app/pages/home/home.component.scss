@@ -260,3 +260,15 @@ ul.ks-cboxtags li input[type="checkbox"]:focus+label {
   font-size: 0.74rem;
   color: var(--grayMedium)
 }
+
+.collapsed {
+  display: none;
+}
+
+.expanded {
+  display: block;
+}
+
+.bannerToggle {
+  text-align: right;
+}

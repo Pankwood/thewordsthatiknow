@@ -1,6 +1,14 @@
 <app-page-default>
     <div class="main">
-        <section class="BannerMainContainer">
+        <div class="bannerToggle">
+            <a href="#" (click)="bannerToggle()">
+                <img *ngIf="bannerIsExpanded" src="../../assets/images/expanded.svg" alt="expanded" title="Hide banner"
+                    width="15px" height="15px" />
+                <img *ngIf="!bannerIsExpanded" src="../../assets/images/collapsed.svg" alt="collapsed"
+                    title="Show banner" width="15px" height="15px" />
+            </a>
+        </div>
+        <section class="BannerMainContainer collapsed" [ngClass]="{expanded: bannerIsExpanded}">
             <section class="ContentAreaContainer">
                 <div class="Item">
                     <h1 class="Title">How many words do you think you know?</h1>
@@ -29,8 +37,8 @@
                             <!--TODO Double check the ngModel structure. Why ngModel="en". Why the event has $event not cmbLanguages? Where is name attr?  Where is required See 4-ngModel-Mosh-->
                             <!--Try: <select #cmbLanguages="ngModel" ngModel name="cmbLanguages" id="cmbLanguages" name="cmbLanguages" required
                             (change)="changeCmbLanguages(cmbLanguages)">-->
-                            <select #cmbLanguages="ngModel" [(ngModel)]="selectLanguage" name="cmbLanguages" id="cmbLanguages"
-                                (change)="changeCmbLanguages($event)">
+                            <select #cmbLanguages="ngModel" [(ngModel)]="selectLanguage" name="cmbLanguages"
+                                id="cmbLanguages" (change)="changeCmbLanguages($event)">
                                 <option *ngFor="let language of languages ; let i = index" [value]="language.id"
                                     [selected]="language.id=='en'">{{language.language}}
                                 </option>
