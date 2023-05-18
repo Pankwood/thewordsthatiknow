@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../../services/words.service';
 import { NotificationService } from '../../services/notification.service';
 import { removeSpecialCharacteres } from '../../../utils';
+import { TranslationService } from 'src/app/services/vendors/translation.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -24,9 +26,13 @@ export class HomeComponent implements OnInit {
   remainCharacter: number = this.maxLengthWord;
   selectLanguage = "en";
   bannerIsExpanded = true;
+  isTranslationEnable = environment.IS_TRANSLATION_ENABLE;
+  translationTimeFrame: ReturnType<typeof setTimeout> = setTimeout(() => '', 0);
+
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService,
-    private serviceNotification: NotificationService, private authService: AuthService) {
+    private serviceNotification: NotificationService, private authService: AuthService,
+    private translationService: TranslationService) {
 
   }
   ngOnInit(): void {
@@ -163,5 +169,25 @@ export class HomeComponent implements OnInit {
   bannerToggle() {
     this.bannerIsExpanded = !this.bannerIsExpanded;
     localStorage.setItem("bannerIsExpanded", this.bannerIsExpanded ? "1" : "0");
+  }
+
+
+  getTranslation(event: any, word: string) {
+    if (event.target.title === "" && this.isTranslationEnable) {
+      this.translationTimeFrame = setTimeout(() => {
+        this.translationService.getTranslation(word, this.selectedLanguage, "pt").subscribe((translatedText: string) => {
+          event.target.setAttribute('title', translatedText.toLowerCase());
+        }, error => {
+          event.target.setAttribute('title', word);
+        })
+      }, 900);
+    }
+  }
+
+  resetTime() {
+    //The mouseenter will be trigger if the user stay the mouse cursor for 900ms, 
+    //if the user move the mouse cursor out, the timeout restarts.
+    //This feature avoid to call the translation API to much times.
+    clearTimeout(this.translationTimeFrame);
   }
 }
