@@ -272,3 +272,14 @@ ul.ks-cboxtags li input[type="checkbox"]:focus+label {
 .bannerToggle {
   text-align: right;
 }
+
+#text-config input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  height: 11px;
+  margin-right: 3px;
+}
+
+#text-config input[type="checkbox"]+label {
+  margin-right: 20px;
+}

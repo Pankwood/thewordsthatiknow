@@ -50,7 +50,20 @@
                                 (ngModelChange)="countCharacteres(text.value)"></textarea>
                             <span id="remaning" class="remaning">{{remainCharacter}} / {{maxLengthWord}}</span>
                         </div>
-                        <app-text-config></app-text-config>
+                        <div id="text-config" style="font-size: 80%;">
+                            <div class="checkbox">
+                                <input type="checkbox" id="chkRemoveHTML" name="chkRemoveHTML" ngModel="true">
+                                <label for="chkRemoveHTML">Remove HTML Tags</label>
+                                <input type="checkbox" id="chkRemoveNumbers" name="chkRemoveNumbers" ngModel="true">
+                                <label for="chkRemoveNumbers">Remove Numbers</label>
+                                <input type="checkbox" id="chkRemoveDuplicated" name="chkRemoveDuplicated"
+                                    ngModel="true">
+                                <label for="chkRemoveDuplicated">Remove Duplicated</label>
+                            </div>
+                            <label for="txtReplaceChars"> Remove Characteres</label>
+                            <input type="text" id="txtReplaceChars" name="txtReplaceChars"
+                                ngModel='!,.«»–?…:%[]\/()<>\"' value="!,.«»–?…:%[]\/()">
+                        </div>
                         <button id="btnCheckWords">Check it</button>
                     </div>
                 </form>

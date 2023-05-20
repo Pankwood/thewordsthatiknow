@@ -20,7 +20,6 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { BurguerComponent } from './components/burguer/burguer.component';
 import { NavigationLinksComponent } from './components/navigation-links/navigation-links.component';
-import { TextConfigComponent } from './components/text-config/text-config.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -39,7 +38,6 @@ export function tokenGetter() {
     SignUpComponent,
     BurguerComponent,
     NavigationLinksComponent,
-    TextConfigComponent,
   ],
   imports: [
     BrowserModule,

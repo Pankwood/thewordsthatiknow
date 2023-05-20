@@ -3,7 +3,7 @@ import { LanguagesService } from '../../services/languages.service';
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../../services/words.service';
 import { NotificationService } from '../../services/notification.service';
-import { removeSpecialCharacteres } from '../../../utils';
+import { processWordsByConfiguration } from '../../../utils';
 import { TranslationService } from 'src/app/services/vendors/translation.service';
 import { environment } from 'src/environments/environment';
 
@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
   bannerIsExpanded = true;
   isTranslationEnable = environment.IS_TRANSLATION_ENABLE;
   translationTimeFrame: ReturnType<typeof setTimeout> = setTimeout(() => '', 0);
-
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService,
     private serviceNotification: NotificationService, private authService: AuthService,
@@ -75,13 +74,10 @@ export class HomeComponent implements OnInit {
     //Get language from combobox cmbLanguages
     this.selectedLanguage = form.value.cmbLanguages ?? "en";
     this.clearForm();
-    //Split all word in an array
-    this.typedWords = removeSpecialCharacteres(form.value.text).split(' ');
+
+    this.typedWords = processWordsByConfiguration(form.value.text, form.value.chkRemoveHTML, form.value.chkRemoveNumbers,
+      form.value.chkRemoveDuplicated, form.value.txtReplaceChars);
     if (this.isTypedWords()) {
-      //Remove duplicated words
-      this.typedWords = [...new Set(this.typedWords)];
-      //Remove empty values
-      this.typedWords = this.typedWords.filter(String);
       this.typedWords.forEach(word => {
         this.serviceWord.getWordByParameters(word, this.selectedLanguage, this.authService.currentUser.userId).subscribe(data => {
           if (data != null)
