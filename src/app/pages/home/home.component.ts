@@ -1,9 +1,9 @@
+import { TextProcessorService } from './../../services/text-processor.service';
 import { AuthService } from './../../services/auth.service';
 import { LanguagesService } from '../../services/languages.service';
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../../services/words.service';
 import { NotificationService } from '../../services/notification.service';
-import { processWordsByConfiguration } from '../../../utils';
 import { TranslationService } from 'src/app/services/vendors/translation.service';
 import { environment } from 'src/environments/environment';
 
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private serviceWord: WordsService, private serviceLanguage: LanguagesService,
     private serviceNotification: NotificationService, private authService: AuthService,
-    private translationService: TranslationService) {
+    private translationService: TranslationService, private textProcessorService: TextProcessorService) {
 
   }
   ngOnInit(): void {
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
     this.selectedLanguage = form.value.cmbLanguages ?? "en";
     this.clearForm();
 
-    this.typedWords = processWordsByConfiguration(form.value.text, form.value.chkRemoveHTML, form.value.chkRemoveNumbers,
+    this.typedWords = this.textProcessorService.processWordsByConfiguration(form.value.text, form.value.chkRemoveHTML, form.value.chkRemoveNumbers,
       form.value.chkRemoveDuplicated, form.value.txtReplaceChars);
     if (this.isTypedWords()) {
       this.typedWords.forEach(word => {
@@ -140,7 +140,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  //TODO Change to isSavedWord - remove functions name from test
   isSavedWord(item: string) {
     //Check if the word exist in the DB and mark it as checked(green)
     return this.wordsFromDB.includes(item.trim().toLowerCase())
