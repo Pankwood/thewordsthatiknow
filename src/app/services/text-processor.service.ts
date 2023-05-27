@@ -7,6 +7,8 @@ export class TextProcessorService {
 
   constructor() { }
   processWordsByConfiguration(text: string, removeHTML: boolean, removeNumbers: boolean, removeDuplicated: boolean, replaceChars: string) {
+    text = text.replace(/[\n\r]/g, ' ').trim().toLowerCase();
+
     if (removeHTML) {
       text = this.removeHTMLFromString(text);
     }
@@ -22,8 +24,6 @@ export class TextProcessorService {
     if (removeDuplicated) {
       text = this.removeDuplicateFromString(text);
     }
-
-    text = text.replace(/[\n\r]/g, ' ').trim().toLowerCase();
 
     let textArray = text
       .split(' ')
