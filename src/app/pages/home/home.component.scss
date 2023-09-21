@@ -283,3 +283,10 @@ ul.ks-cboxtags li input[type="checkbox"]:focus+label {
 #text-config input[type="checkbox"]+label {
   margin-right: 20px;
 }
+
+@media (max-width: 511px) {
+  .checkbox {
+    display: flex;
+    margin-bottom: 15px;
+  }
+}
